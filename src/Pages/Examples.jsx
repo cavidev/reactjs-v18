@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import Show from '../components/Show/Show'
+import Show_ from '../components/Show/Show_'
 import For from '../components/For/For'
 
 function Examples() {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const userList = ["Carlos", "Mario", "Rodrigo", "Joe"];
+  const [show_, setShow_] = useState(false)
 
   return (
     <div className='flex flex-row gap-6' >
@@ -34,6 +36,18 @@ function Examples() {
                 </For>
             </ul>
         </div>
+        <div className='flex flex-col gap-4' >
+            <button onClick={() => setShow_((prev => !prev))}>
+                {show_ && "✔️" || "❌"}
+            </button>
+            <Show_ when={show_} fallback={<div>fallback</div>} >
+                <div>show</div>
+            </Show_>
+            <Show_ when={!show_} fallback={<div>fallback</div>} >
+                <div>show</div>
+            </Show_>
+        </div>
+        
     </div>
   )
 }
