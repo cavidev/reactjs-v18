@@ -3,11 +3,11 @@ import { Children } from 'react';
 const Show = (props) => {
   let when = null;
   let otherwise = null;
-  
-  console.log(props)
 
+  console.log(props)
+  
   Children.forEach(props.children, (child) => {
-    if (child.props.isTrue === undefined) {
+    if (child?.props?.isTrue === undefined) {
       otherwise = child;
     } else if (!when && child.props.isTrue) {
       when = child;
