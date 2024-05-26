@@ -1,20 +1,8 @@
-import { Children } from 'react';
+import { useCallback } from "react";
 
-const Show = (props) => {
-  let when = null;
-  let otherwise = null;
-  
-  Children.forEach(props.children, (child) => {
-    if (child?.props?.isTrue === undefined) {
-      otherwise = child;
-    } else if (!when && child.props.isTrue) {
-      when = child;
-    }
-  });
-  return when || otherwise;
+const Show = ({ when, children, fallback }) => {
+    const change = useCallback(() => (when ? children : fallback ?? <></>), [when, children, fallback]);
+    return change();
 };
-
-Show.When = ({ isTrue, children }) => isTrue && children;
-Show.Else = ({ render, children }) => render || children;
 
 export default Show;

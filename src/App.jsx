@@ -1,15 +1,14 @@
-import { useState } from 'react'
-import Examples from './Pages/Examples'
-
-import './App.css'
+import Content from "./components/Content/Content";
+import "./App.css";
 
 function App() {
-
-  return (
-    <div>
-      <Examples />
-    </div>
-  )
+    return (
+        <>
+            {/* <Header /> */}
+            <Content />
+            {/* <Footer /> */}
+        </>
+    );
 }
 
-export default App
+export default App;
