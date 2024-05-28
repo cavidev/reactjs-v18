@@ -1,4 +1,4 @@
-import Content from "./components/Content/Content";
+import Content from "./Pages/Content/Content";
 import "./App.css";
 
 function App() {

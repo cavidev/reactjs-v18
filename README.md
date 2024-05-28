@@ -35,3 +35,12 @@ const show = useState(true);
 ```
 
 now, the sintax jsx is better to read and understanding
+
+## Api Weather
+
+https://home.openweathermap.org/
+
+https://open-meteo.com/en/docs#current=temperature_2m,rain&hourly=&daily=
+https://www.npmjs.com/package/openmeteo
+
+https://rapidapi.com/weatherapi/api/weatherapi-com/

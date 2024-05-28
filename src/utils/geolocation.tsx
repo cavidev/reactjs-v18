@@ -1,14 +1,19 @@
 import { Dispatch, SetStateAction } from "react";
+export interface Position {
+    latitude: number;
+    longitude: number;
+}
 
-export default (setPosition: Dispatch<SetStateAction<{}>>) => {
+const getCurrentPosition = (setPosition: Dispatch<SetStateAction<Position>>) => {
     if (navigator.geolocation) {
         const success = function (position) {
-            const latitud = position.coords.latitude;
-            const longitud = position.coords.longitude;
-            setPosition({ latitud, longitud });
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            setPosition({ latitude, longitude });
         };
         navigator.geolocation.getCurrentPosition(success, (msg) => {
             console.error(msg);
         });
     }
 };
+export default getCurrentPosition;
