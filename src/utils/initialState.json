@@ -6,7 +6,7 @@
     "weather": [
         {
             "id": 500,
-            "main": "Rain",
+            "main": "Sun",
             "description": "lluvia ligera",
             "icon": "10n"
         }

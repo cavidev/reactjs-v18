@@ -33,9 +33,9 @@ const Weather = () => {
                     <Show when={weather.weather[0].main === "Rain"}>
                         <Meteors number={100} />
                     </Show>
-                    <p className="z-10 whitespace-nowrap text-4xl font-medium text-gray-800 dark:text-gray-200">
-                        Weather App
-                    </p>
+                    <h1 className="z-10 whitespace-nowrap font-medium text-gray-800 dark:text-gray-200">
+                        {weather.main.temp}{" "}
+                    </h1>
                     <h2>{weather.name} </h2>
                     <span>Sensacion de: {weather.main.feels_like} </span>
                     <span>Longitud: {position.longitude} </span>
