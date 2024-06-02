@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { MagicCard, MagicContainer } from "../Magicui/MagicCard";
-import getCurrentPosition from "../../utils/geolocation";
+import { MagicCard, MagicContainer } from "modules/core/magicui/MagicCard";
+import getCurrentPosition from "~/utils/geolocation";
 // import key from "../../services/apiKey";
-import getWeather from "../../services/RestApi";
-import initialState from "../../utils/initialState.json";
-import Meteors from "../Magicui/Meteors";
-import Show from "../Show/Show";
+import getWeather from "~/api/RestApi";
+import initialState from "~/utils/initialState.json";
+import Meteors from "modules/core/magicui/Meteors";
+import Show from "~/hooks/Show/Show";
 
 const Weather = () => {
     const [position, setPosition] = useState({ latitude: 0, longitude: 0 });

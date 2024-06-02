@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Show from "../components/Show/_Show_";
+import Show from "~/hooks/";
 import Show_ from "../components/Show/Show";
 import For from "../components/For/For";
 

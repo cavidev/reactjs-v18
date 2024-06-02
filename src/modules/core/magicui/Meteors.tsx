@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useEffect, useState } from "react";
-import For from "../For/For";
+import For from "../../../hooks/For/For";
 
 interface MeteorsProps {
     number?: number;

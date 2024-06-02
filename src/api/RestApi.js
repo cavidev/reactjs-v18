@@ -1,5 +1,5 @@
 import { decryptPassword } from "../utils/secure";
-import encriptedAppid from "../services/apiKey.json";
+import encriptedAppid from "./apiKey.json";
 import secrectKey from "../utils/noUpload";
 
 function isEmpty(obj) {
