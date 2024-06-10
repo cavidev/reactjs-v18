@@ -7,9 +7,10 @@ import { getRapidApiWeather } from "~/api/RestApi";
 import initialState from "~/utils/initialState.json";
 
 import "./Weather.css";
-import Thermometer from "~/assets/icons/Thermometer";
-import Wind from "~/assets/icons/Wind";
+import Thermometer from "~/modules/weather/assets/icons/Thermometer";
+import Wind from "~/modules/weather/assets/icons/Wind";
 import Current from "./components/Current";
+import Parameter from "./components/Parameter";
 
 const Weather = () => {
     const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
@@ -53,27 +54,17 @@ const Weather = () => {
                 <div className="h-1/3">
                     <Card>
                         <div className="flex flex-row flex-1 gap-3">
-                            <div className="flex flex-row">
-                                <Thermometer />
-                                <div className="flex flex-col">
-                                    <span className="text-xs leading-3">Feels like</span>
-                                    <span className="text-2xl font-semibold">{`${weather.current.feelslike_c}°`}</span>
-                                </div>
-                            </div>
-                            <div className="flex flex-row">
-                                <Wind />
-                                <div className="flex flex-col">
-                                    <span className="text-xs leading-3">Feels like</span>
-                                    <span className="text-2xl font-semibold">{`${weather.current.feelslike_c}°`}</span>
-                                </div>
-                            </div>
-                            <div className="flex flex-row">
-                                <Thermometer />
-                                <div className="flex flex-col">
-                                    <span className="text-xs leading-3">Feels like</span>
-                                    <span className="text-2xl font-semibold">{`${weather.current.feelslike_c}°`}</span>
-                                </div>
-                            </div>
+                            <Parameter
+                                icon={<Thermometer />}
+                                parameters={[{ description: "Feels like", value: `${weather.current.feelslike_c}°` }]}
+                            />
+                            <Parameter
+                                icon={<Wind />}
+                                parameters={[
+                                    { description: "Velocity", value: `${weather.current.wind_kph}` },
+                                    { description: "Direction", value: `${weather.current.wind_dir}` },
+                                ]}
+                            />
                         </div>
                     </Card>
                 </div>
@@ -84,7 +75,15 @@ const Weather = () => {
                     <button onClick={handleApi}>get</button>
                 </div>
             </div>
-            <div className="w-1/3">Forecast</div>
+            <div className="w-1/3 h-full flex flex-col">
+                Forecast
+                <div className="self-end">
+                    Powered by{" "}
+                    <a href="https://www.weatherapi.com/" title="Free Weather API">
+                        WeatherAPI.com
+                    </a>
+                </div>
+            </div>
         </div>
     );
 };
