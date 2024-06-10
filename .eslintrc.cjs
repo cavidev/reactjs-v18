@@ -7,6 +7,8 @@ module.exports = {
         "plugin:react/jsx-runtime",
         "plugin:react/tsx-runtime",
         "plugin:react-hooks/recommended",
+        "airbnb",
+        "prettier",
     ],
     ignorePatterns: ["dist", ".eslintrc.cjs"],
     parserOptions: { ecmaVersion: "latest", sourceType: "module" },
@@ -15,5 +17,7 @@ module.exports = {
     rules: {
         "react/jsx-no-target-blank": "off",
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+        "import/no-unresolved": "error",
+        "import/prefer-default-expor": "off",
     },
 };

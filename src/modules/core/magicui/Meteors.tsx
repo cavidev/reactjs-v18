@@ -1,6 +1,4 @@
-"use client";
-
-import clsx from "clsx";
+import { cn } from "~/lib/utils";
 import React from "react";
 import { useEffect, useState } from "react";
 import For from "../../../hooks/For/For";
@@ -32,7 +30,7 @@ export const Meteors = ({ number = 20 }: MeteorsProps) => {
                     // Meteor Head
                     <span
                         key={idx}
-                        className={clsx(
+                        className={cn(
                             "pointer-events-none absolute left-1/2 top-1/2 h-0.5 w-0.5 rotate-[215deg] animate-meteor rounded-[9999px] bg-slate-500 shadow-[0_0_0_1px_#ffffff10]"
                         )}
                         style={style}

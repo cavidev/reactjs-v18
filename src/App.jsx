@@ -11,7 +11,7 @@ function App() {
               parent route paths, and nested route elements render inside
               parent route elements. See the note about <Outlet> below. */}
             <Routes>
-                <Route path="/*" element={<Layout />}>
+                <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="weather" element={<Weather />} />
                     <Route path="examples" element={<Dashboard />} />
@@ -21,8 +21,6 @@ function App() {
                   routes for. */}
                     <Route path="*" element={<NoMatch />} />
                 </Route>
-                <Route path="weather" element={<Weather />} />
-                <Route path="examples" element={<Dashboard />} />
             </Routes>
         </>
     );
@@ -30,34 +28,32 @@ function App() {
 
 export default App;
 
+import { Menubar } from "primereact/menubar";
 function Layout() {
+    const items = [
+        {
+            label: "Home",
+            icon: "pi pi-home",
+            url: "/",
+        },
+        {
+            label: "Weather",
+            icon: "pi pi-cloud",
+            url: "/weather",
+        },
+        {
+            label: "Examples",
+            url: "/weather",
+        },
+    ];
     return (
-        <div>
-            {/* A "layout route" is a good place to put markup you want to
-            share across all the pages on your site, like navigation. */}
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/weather">Weather App</Link>
-                    </li>
-                    <li>
-                        <Link to="/examples">Hooks Examples</Link>
-                    </li>
-                    <li>
-                        <Link to="/nothing-here">Nothing Here</Link>
-                    </li>
-                </ul>
-            </nav>
-
-            <hr />
-
-            {/* An <Outlet> renders whatever child route is currently active,
-            so you can think about this <Outlet> as a placeholder for
-            the child routes we defined above. */}
+        <div className="flex flex-col h-full">
+            <Menubar model={items}></Menubar>
             <Outlet />
+            {/* An <Outlet> renders whatever child route is currently active,
+        so you can think about this <Outlet> as a placeholder for
+        the child routes we defined above. */}
+
             {/* <Header /> */}
             {/* <Body /> */}
             {/* <Footer /> */}
@@ -65,18 +61,24 @@ function Layout() {
     );
 }
 
+import { Button } from "primereact/button";
 function Home() {
     return (
         <div>
             <h2>Home</h2>
+            <MaskDemo />
         </div>
     );
 }
 
-function About() {
+import React, { useState } from "react";
+import { InputOtp } from "primereact/inputotp";
+function MaskDemo() {
+    const [token, setTokens] = useState();
+
     return (
-        <div>
-            <h2>About</h2>
+        <div className="card flex justify-content-center">
+            <InputOtp value={token} onChange={(e) => setTokens(e.value)} mask />
         </div>
     );
 }

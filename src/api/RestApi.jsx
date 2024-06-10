@@ -1,6 +1,6 @@
 import { decryptPassword } from "../utils/secure";
 import encriptedAppid from "./apiKey.json";
-import secrectKey from "../utils/noUpload";
+import secrectKey, { headers } from "../utils/noUpload";
 
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
@@ -54,6 +54,54 @@ const response = {
     cod: 200,
 };
 
+const responseRapidApi = {
+    location: {
+        name: "San Vicente",
+        region: "Heredia",
+        country: "Costa Rica",
+        lat: 9.99,
+        lon: -84.09,
+        tz_id: "America/Costa_Rica",
+        localtime_epoch: 1717394095,
+        localtime: "2024-06-02 23:54",
+    },
+    current: {
+        last_updated_epoch: 1717393500,
+        last_updated: "2024-06-02 23:45",
+        temp_c: 23,
+        temp_f: 73.4,
+        is_day: 0,
+        condition: {
+            text: "Fog",
+            icon: "//cdn.weatherapi.com/weather/64x64/night/248.png",
+            code: 1135,
+        },
+        wind_mph: 2.2,
+        wind_kph: 3.6,
+        wind_degree: 344,
+        wind_dir: "NNW",
+        pressure_mb: 1018,
+        pressure_in: 30.06,
+        precip_mm: 0.03,
+        precip_in: 0,
+        humidity: 94,
+        cloud: 75,
+        feelslike_c: 25.5,
+        feelslike_f: 78,
+        windchill_c: 20.5,
+        windchill_f: 68.9,
+        heatindex_c: 20.5,
+        heatindex_f: 68.9,
+        dewpoint_c: 20.3,
+        dewpoint_f: 68.5,
+        vis_km: 8,
+        vis_miles: 4,
+        uv: 1,
+        gust_mph: 6.7,
+        gust_kph: 10.8,
+    },
+};
+
 const getWeather = async (url, params) => {
     /**
      * Getting the appid decrypted...
@@ -78,3 +126,21 @@ const getWeather = async (url, params) => {
 };
 
 export default getWeather;
+
+export const getRapidApiWeather = async ({ lat, lon }) => {
+    const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${lat},${lon}`;
+    const options = {
+        method: "GET",
+        headers,
+    };
+
+    try {
+        /*
+        const response = await fetch(url, options);
+        const result = await response.json();
+        console.log(result);*/
+        return responseRapidApi;
+    } catch (error) {
+        console.error(error);
+    }
+};

@@ -34,9 +34,7 @@
     "debug.console.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
     "scm.inputFontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
     "gitlens.blame.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
-    "editor.codeActionsOnSave": {
-       
-    },
+    "editor.codeActionsOnSave": {},
     "terminal.integrated.fontFamily": "'Anonymous Pro'",
     "workbench.colorTheme": "One Dark Pro Darker",
     "js-auto-backticks.enableRevert": true,
@@ -48,12 +46,12 @@
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 4,
-        "editor.formatOnSave": true,
+        "editor.formatOnSave": true
     },
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 4,
-        "editor.formatOnSave": true,
+        "editor.formatOnSave": true
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -63,4 +61,5 @@
     },
     "editor.formatOnType": false,
     "html.format.indentInnerHtml": true,
+    "autoimport.filesToScan": "**/*.{ts,tsx,js,jsx}"
 }
