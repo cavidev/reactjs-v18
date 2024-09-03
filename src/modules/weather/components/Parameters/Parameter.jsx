@@ -1,5 +1,5 @@
 import For from "~/hooks/For/For";
-
+import "./Parameter.css";
 const Parameter = (props) => {
     const { icon, parameters } = props;
     // description, value
@@ -10,7 +10,6 @@ const Parameter = (props) => {
                 <div className="flex flex-col">
                     <For each={parameters}>
                         {(parameter, index) => {
-                            console.log(parameter);
                             return (
                                 <div key={index} className="flex flex-col">
                                     <span className="text-xs leading-3">{parameter.description}</span>

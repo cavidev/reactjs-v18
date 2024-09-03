@@ -1,8 +1,12 @@
 {
-  "name": "poc-custome-components-react",
+  "name": "react-v18",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "src/modules/weather",
+    "src/modules/reactquery"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,6 +14,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.15",
+    "@tanstack/react-query-devtools": "^5.51.15",
+    "date-fns": "^3.6.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.6.6",
     "react": "^18.3.1",

@@ -1,26 +1,9 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
-
 @layer tailwind-base, primereact, tailwind-utilities;
 
 /* IMPORTANT: Styled mode you must add the PrimeReact Theme here. Do not include in unstyled mode */
 @import 'primereact/resources/themes/bootstrap4-dark-purple/theme.css' layer(primereact);
+/* @import url("./fonts/Forum/Forum-Regular.ttf");
+/* @import url("./fonts/Barlow/Barlow-Black.ttf"); */
 
 @layer tailwind-base {
   @tailwind base;
@@ -31,14 +14,23 @@
   @tailwind utilities;
 }
 
+@font-face {
+  font-family: 'Barlow';
+  src: url('fonts/Barlow/Barlow-Regular.ttf') format('typetrue');
+}
+
+@font-face {
+  font-family: 'Victor Mono';
+  src: url('fonts/Victor_Mono/VictorMono-Italic-VariableFont_wght.ttf') format('typetrue');
+}
+
 :root {
-  font-family: Verdana, Geneva, Tahoma, sans-serif, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Barlow', 'Victor Mono', Helvetica;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
   color-scheme: dark;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -1,47 +1,37 @@
-import { useState, useEffect } from "react";
-import { Fieldset } from "primereact/fieldset";
 import { Card } from "primereact/card";
-import getCurrentPosition from "~/utils/geolocation";
-// import key from "../../services/apiKey";
-import { getRapidApiWeather } from "~/api/RestApi";
-import initialState from "~/utils/initialState.json";
+import useGeolocation from "~/modules/weather/hooks/useGeolocation";
+import useCurrentWeatherApi from "~/api/rapidapi/weather/current";
+import Thermometer from "modules/weather/assets/icons/Thermometer";
+import Wind from "modules/weather/assets/icons/Wind";
+import Current from "./components/Current";
+import Astronomy from "./components/Astronomy/Astronomy";
+import Parameter from "./components/Parameters/Parameter";
+import Loader from "./components/Loader/Loader";
+import Error from "./components/Error/Error";
+import Sun from "modules/weather/assets/icons/Sun";
 
 import "./Weather.css";
-import Thermometer from "~/modules/weather/assets/icons/Thermometer";
-import Wind from "~/modules/weather/assets/icons/Wind";
-import Current from "./components/Current";
-import Parameter from "./components/Parameter";
+import { useState } from "react";
 
-const Weather = () => {
-    const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
-    const [weather, setWeather] = useState(initialState);
+const WeatherContent = ({ lat, lon }) => {
+    const [toUpdate, SettoUpdate] = useState(false);
+    const { isLoading, isFetching, error, data, refetch } = useCurrentWeatherApi({
+        lat,
+        lon,
+    });
 
-    const handleApi = () => {
-        /* const response = getWeather("https://api.openweathermap.org/data/2.5/weather", {
-            lat: position.latitude,
-            lon: position.longitude,
-        });
-        response.then((data) => setWeather(data));
-        */
-        getRapidApiWeather({
-            lat: position.latitude,
-            lon: position.longitude,
-        }).then((data) => setWeather(data));
-    };
-
-    useEffect(() => {
-        getCurrentPosition(setPosition);
-        handleApi();
-    }, []);
+    if (error) return <Error />;
+    if (isLoading || isFetching) return <Loader />;
 
     const current = {
-        temp: weather.current.temp_c,
-        name: weather.location.name,
-        region: weather.location.region,
-        country: weather.location.country,
+        temp: data.current.temp_c,
+        is_day: data.current.is_day,
+        name: data.location.name,
+        region: data.location.region,
+        country: data.location.country,
         condition: {
-            actual: weather.current.condition.text,
-            icon: weather.current.condition.icon,
+            actual: data.current.condition.text,
+            icon: data.current.condition.icon,
         },
     };
 
@@ -56,28 +46,37 @@ const Weather = () => {
                         <div className="flex flex-row flex-1 gap-3">
                             <Parameter
                                 icon={<Thermometer />}
-                                parameters={[{ description: "Feels like", value: `${weather.current.feelslike_c}°` }]}
+                                parameters={[{ description: "Feels like", value: `${data.current.feelslike_c}°` }]}
                             />
                             <Parameter
                                 icon={<Wind />}
                                 parameters={[
-                                    { description: "Velocity", value: `${weather.current.wind_kph}` },
-                                    { description: "Direction", value: `${weather.current.wind_dir}` },
+                                    { description: "Velocity", value: `${data.current.wind_kph}` },
+                                    { description: "Direction", value: `${data.current.wind_dir}` },
                                 ]}
+                            />
+                            <Parameter
+                                icon={<Sun />}
+                                parameters={[{ description: "UV Radation", value: `${data.current.uv}` }]}
                             />
                         </div>
                     </Card>
                 </div>
                 <div className="h-1/3">
-                    <Fieldset legend="Parameters">
-                        <p className="m-0"></p>
-                    </Fieldset>
-                    <button onClick={handleApi}>get</button>
+                    <Astronomy></Astronomy>
                 </div>
             </div>
             <div className="w-1/3 h-full flex flex-col">
                 Forecast
-                <div className="self-end">
+                <button
+                    onClick={() => {
+                        SettoUpdate(true);
+                        refetch();
+                    }}
+                >
+                    Change Location {toUpdate}
+                </button>
+                <div className="self-end mt-auto p-1">
                     Powered by{" "}
                     <a href="https://www.weatherapi.com/" title="Free Weather API">
                         WeatherAPI.com
@@ -86,6 +85,12 @@ const Weather = () => {
             </div>
         </div>
     );
+};
+
+const Weather = () => {
+    const { location } = useGeolocation();
+    if (!location.latitude) return <Loader />;
+    return <WeatherContent lat={location.latitude} lon={location.longitude} />;
 };
 
 export default Weather;

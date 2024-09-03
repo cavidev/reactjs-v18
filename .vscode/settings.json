@@ -15,7 +15,7 @@
     "editor.fontFamily": "'Victor Mono', 'JetBrains Mono', 'Anonymous Pro', monospace",
     "editor.tabSize": 4,
     "editor.cursorSmoothCaretAnimation": "on",
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "editor.fontWeight": "200",
     "editor.codeLensFontFamily": "'Anonymous Pro', 'JetBrains Mono'",
     "editor.fontVariations": true,

@@ -1,0 +1,15 @@
+{
+    "name": "weather",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+    },
+    "eslintConfig": {
+      "extends": "standard"
+    }
+}

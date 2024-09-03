@@ -1,8 +1,8 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import "./App.css";
 import Weather from "modules/weather/Weather";
-
-// import Examples from "modules/examples/Examples";
+import ReactQuery from "modules/reactquery/ReactQuery";
+import Examples from "modules/examples/Examples";
 
 function App() {
     return (
@@ -14,7 +14,8 @@ function App() {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="weather" element={<Weather />} />
-                    <Route path="examples" element={<Dashboard />} />
+                    <Route path="reactquery" element={<ReactQuery />} />
+                    <Route path="examples" element={<Examples />} />
 
                     {/* Using path="*"" means "match anything", so this route
                   acts like a catch-all for URLs that we don't have explicit
@@ -42,8 +43,12 @@ function Layout() {
             url: "/weather",
         },
         {
+            label: "React Query",
+            url: "/reactquery",
+        },
+        {
             label: "Examples",
-            url: "/weather",
+            url: "/examples",
         },
     ];
     return (
@@ -73,20 +78,13 @@ function Home() {
 
 import React, { useState } from "react";
 import { InputOtp } from "primereact/inputotp";
+// import Examples from "./modules/examples/Examples";
 function MaskDemo() {
     const [token, setTokens] = useState();
 
     return (
         <div className="card flex justify-content-center">
             <InputOtp value={token} onChange={(e) => setTokens(e.value)} mask />
-        </div>
-    );
-}
-
-function Dashboard() {
-    return (
-        <div>
-            <h2>Dashboard</h2>
         </div>
     );
 }

@@ -7,24 +7,24 @@
 
 <!-- PROJECT LOGO -->
 
+[![React][React.js]][React-url]
 <br />
+
 <div align="center">
     <h3 align="center">Portfolio React 18</h3>
     <p align="center">
         In this app we are going to find small pieces of projects, the idea is to apply my knowledge and learn more in React.js v18
         <br />
-        <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+        <a href="https://github.com/cavidev/reactjs-v18"><strong>Explore the docs »</strong></a>
         <br />
         <br />
-        <a href="https://github.com/github_username/repo_name">View Demo</a>
+        <a href="https://github.com/cavidev/reactjs-v18">View Demo</a>
         ·
-        <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+        <a href="https://github.com/cavidev/reactjs-v18/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
         ·
-        <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+        <a href="https://github.com/cavidev/reactjs-v18/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
     </p>
 </div>
-
-[![React][React.js]][React-url]
 
 ### Built With
 
