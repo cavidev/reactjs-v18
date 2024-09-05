@@ -34,7 +34,9 @@
     "debug.console.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
     "scm.inputFontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
     "gitlens.blame.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
-    "editor.codeActionsOnSave": {},
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    },
     "terminal.integrated.fontFamily": "'Anonymous Pro'",
     "workbench.colorTheme": "One Dark Pro Darker",
     "js-auto-backticks.enableRevert": true,

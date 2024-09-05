@@ -1,6 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { headers } from "../../../utils/noUpload";
 import { baseUrl, wait } from "./baseUrl";
-import { useQuery } from "@tanstack/react-query";
 
 const data = {
     location: {
@@ -44,8 +44,7 @@ const useAstroWeatherApi = ({ lat, lon, toUpdate = false }) => {
                 const response = await fetch(url, options);
                 return await response.json();
             }
-            const response = await wait(10000, data);
-            return response;
+            return await wait(10000, data);
         },
     });
 };

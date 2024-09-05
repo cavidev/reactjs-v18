@@ -7,13 +7,15 @@ const Current = (props) => {
         region,
         country,
         is_day,
+        time,
         condition: { actual, icon },
     } = props;
+    console.log(time);
     return (
         <>
             <div className="flex flex-col w-1/3 justify-center">
                 <span className="text-3xl">{name}</span>
-                <span className="text-xl">{format(new Date(), "PPP")}</span>
+                <span className="text-xl">{format(time, "PPP")}</span>
                 <span className="text-sm">
                     {region}, {country}
                 </span>

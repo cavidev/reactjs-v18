@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Custom hook para obtener la ubicación
-const useGeolocation = () => {
+const getGeolocation = () => {
     const [location, setLocation] = useState({ latitude: null, longitude: null });
     const [error, setError] = useState(null);
 
@@ -33,4 +33,4 @@ const useGeolocation = () => {
     return { location, error };
 };
 
-export default useGeolocation;
+export default getGeolocation;

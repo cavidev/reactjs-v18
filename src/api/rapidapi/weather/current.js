@@ -1,6 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { headers } from "../../../utils/noUpload";
 import { baseUrl, wait } from "./baseUrl";
-import { useQuery } from "@tanstack/react-query";
 
 const data = {
     location: {
@@ -63,11 +63,12 @@ const useCurrentWeatherApi = ({ lat, lon, toUpdate = false }) => {
     return useQuery({
         queryKey: ["currentWeatherData"],
         queryFn: async () => {
+            console.log("toUpdate", toUpdate);
             if (toUpdate) {
                 const response = await fetch(url, options);
                 return await response.json();
             }
-            const response = await wait(10000, data);
+            const response = await wait(3000, data);
             return response;
         },
     });

@@ -1,23 +1,24 @@
-import { Card } from "primereact/card";
-import useGeolocation from "~/modules/weather/hooks/useGeolocation";
-import useCurrentWeatherApi from "~/api/rapidapi/weather/current";
+import Sun from "modules/weather/assets/icons/Sun";
 import Thermometer from "modules/weather/assets/icons/Thermometer";
 import Wind from "modules/weather/assets/icons/Wind";
-import Current from "./components/Current";
-import Astronomy from "./components/Astronomy/Astronomy";
-import Parameter from "./components/Parameters/Parameter";
-import Loader from "./components/Loader/Loader";
-import Error from "./components/Error/Error";
-import Sun from "modules/weather/assets/icons/Sun";
-
-import "./Weather.css";
+import { Card } from "primereact/card";
 import { useState } from "react";
+import useCurrentWeatherApi from "~/api/rapidapi/weather/current";
+import Astronomy from "./components/Astronomy/Astronomy";
+import Current from "./components/Current";
+import Error from "./components/Error/Error";
+import Loader from "./components/Loader/Loader";
+import Parameter from "./components/Parameters/Parameter";
+import { GeolocationContextProvider, useGeolocation } from "./context/Geolocation";
+import "./Weather.css";
 
-const WeatherContent = ({ lat, lon }) => {
+const WeatherContent = () => {
     const [toUpdate, SettoUpdate] = useState(false);
+    const lacation = useGeolocation();
     const { isLoading, isFetching, error, data, refetch } = useCurrentWeatherApi({
-        lat,
-        lon,
+        lat: lacation.lat,
+        lon: lacation.lon,
+        toUpdate: false,
     });
 
     if (error) return <Error />;
@@ -29,6 +30,7 @@ const WeatherContent = ({ lat, lon }) => {
         name: data.location.name,
         region: data.location.region,
         country: data.location.country,
+        time: data.current.last_updated,
         condition: {
             actual: data.current.condition.text,
             icon: data.current.condition.icon,
@@ -63,7 +65,7 @@ const WeatherContent = ({ lat, lon }) => {
                     </Card>
                 </div>
                 <div className="h-1/3">
-                    <Astronomy></Astronomy>
+                    <Astronomy />
                 </div>
             </div>
             <div className="w-1/3 h-full flex flex-col">
@@ -88,9 +90,11 @@ const WeatherContent = ({ lat, lon }) => {
 };
 
 const Weather = () => {
-    const { location } = useGeolocation();
-    if (!location.latitude) return <Loader />;
-    return <WeatherContent lat={location.latitude} lon={location.longitude} />;
+    return (
+        <GeolocationContextProvider>
+            <WeatherContent />
+        </GeolocationContextProvider>
+    );
 };
 
 export default Weather;
