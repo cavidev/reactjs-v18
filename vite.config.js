@@ -1,5 +1,6 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,16 +10,15 @@ export default defineConfig({
         open: true, // Abrir el navegador automáticamente
         https: false, // Usa HTTPS si es true
     },
-    plugins: [react()],
+    plugins: [
+        react(),
+        ,
+        tsconfigPaths(), // Añadir soporte para los paths del tsconfig
+    ],
     resolve: {
         alias: [
             { find: "~", replacement: "/src" },
             { find: "modules", replacement: "/src/modules" },
         ],
-        /* alias: {
-            "~": "/src",
-            modules: path.resolve("/src/modules"),
-            
-        },*/
     },
 });

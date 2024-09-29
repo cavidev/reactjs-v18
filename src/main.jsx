@@ -1,13 +1,13 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { PrimeReactProvider } from "primereact/api";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { PrimeReactProvider } from "primereact/api";
 import App from "./App.jsx";
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import "./index.css";
 import "primeicons/primeicons.css";
+import "./index.css";
 
 const queryClient = new QueryClient();
 

@@ -11,13 +11,27 @@
         "terminalCursor.foreground": "#ffffff"
     },
     "terminal.integrated.cursorStyle": "underline",
+    "oneDarkPro.bold": true,
+    "errorLens.fontStyleItalic": true,
+    "errorLens.fontFamily": "'Anonymous Pro'",
+    "files.autoSave": "onFocusChange",
+    "debug.console.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
+    "scm.inputFontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
+    "gitlens.blame.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
+    "terminal.integrated.fontFamily": "'Consolas','Anonymous Pro'",
+    "terminal.integrated.fontSize": 14,
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    },
+    "editor.inlayHints.fontFamily": "'Anonymous Pro', 'JetBrains Mono'",
+    "editor.inlineSuggest.fontFamily": "'JetBrains Mono', 'Anonymous Pro', default",
     "editor.cursorBlinking": "expand",
     "editor.fontFamily": "'Victor Mono', 'JetBrains Mono', 'Anonymous Pro', monospace",
-    "editor.tabSize": 4,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.fontSize": 16,
     "editor.fontWeight": "200",
-    "editor.codeLensFontFamily": "'Anonymous Pro', 'JetBrains Mono'",
+    "editor.codeLensFontFamily": " 'Anonymous Pro', 'JetBrains Mono'",
     "editor.fontVariations": true,
     "editor.experimental.asyncTokenization": true,
     "editor.fontLigatures": "'ss02'",
@@ -25,43 +39,26 @@
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "editor.guides.highlightActiveBracketPair": true,
     "editor.stickyScroll.enabled": true,
-    "oneDarkPro.bold": false,
-    "errorLens.fontStyleItalic": true,
-    "errorLens.fontFamily": "'Anonymous Pro'",
-    "files.autoSave": "onFocusChange",
-    "editor.inlayHints.fontFamily": "'Anonymous Pro', 'JetBrains Mono'",
-    "editor.inlineSuggest.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
-    "debug.console.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
-    "scm.inputFontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
-    "gitlens.blame.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": "always"
-    },
-    "terminal.integrated.fontFamily": "'Anonymous Pro'",
-    "workbench.colorTheme": "One Dark Pro Darker",
-    "js-auto-backticks.enableRevert": true,
-    "prettier.printWidth": 100,
-    "editor.formatOnSave": true,
-    "prettier.configPath": ".prettierrc",
-    // "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.formatOnSaveMode": "file",
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.tabSize": 4,
-        "editor.formatOnSave": true
-    },
-    "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.tabSize": 4,
-        "editor.formatOnSave": true
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescriptreact]": {
+    "editor.formatOnType": false,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "[javascript, javascriptreact]": {
+        /*Todos los archivos .js se van a formatear con esbenp.prettier-vscode */
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.formatOnType": false,
+    "[typescript, typescriptreact]": {
+        /*Todos los archivos .tsx se van a formatear con vscode.typescript-language-features */
+        // "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "prettier.printWidth": 100,
+    "prettier.configPath": ".prettierrc",
     "html.format.indentInnerHtml": true,
-    "autoimport.filesToScan": "**/*.{ts,tsx,js,jsx}"
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

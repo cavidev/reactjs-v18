@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { es } from "date-fns/locale/es";
 
 const Current = (props) => {
     const {
@@ -10,12 +11,11 @@ const Current = (props) => {
         time,
         condition: { actual, icon },
     } = props;
-    console.log(time);
     return (
         <>
             <div className="flex flex-col w-1/3 justify-center">
                 <span className="text-3xl">{name}</span>
-                <span className="text-xl">{format(time, "PPP")}</span>
+                <span className="text-xl">{format(time, "PPP", { locale: es })}</span>
                 <span className="text-sm">
                     {region}, {country}
                 </span>
@@ -24,7 +24,7 @@ const Current = (props) => {
                 <span className="text-9xl">{`${temp}°`}</span>
             </div>
             <div className="flex flex-col gap-1 w-1/3 h-full justify-center text-center">
-                <div className="justify-center pl-[7.25rem] text-center">
+                <div className="flex justify-center text-center">
                     <img width={100} src={icon} />
                 </div>
                 <span className="text-xl">{actual}</span>

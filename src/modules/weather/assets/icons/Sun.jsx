@@ -1,4 +1,4 @@
-const Sun = (props) => {
+const Sun = () => {
     return (
         <svg
             width="24"

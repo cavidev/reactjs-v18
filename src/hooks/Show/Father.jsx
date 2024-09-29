@@ -4,8 +4,6 @@ import Show from "./Show";
 function Father() {
     const [type, seType] = useState("");
 
-    console.log("");
-
     return (
         <>
             <input value={type} onInput={(e) => seType(e.target.value)} />

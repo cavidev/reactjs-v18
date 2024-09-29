@@ -1,6 +1,4 @@
-import * as React from "react";
-
-const Thermometer = (props) => {
+const Thermometer = () => {
     return (
         <svg
             fill="currentColor"

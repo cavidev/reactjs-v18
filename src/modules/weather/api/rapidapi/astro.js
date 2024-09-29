@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { headers } from "../../../utils/noUpload";
-import { baseUrl, wait } from "./baseUrl";
+import { headers } from "../../../../utils/noUpload";
+import { baseUrl, wait } from "./utils";
 
+//@ts-check
 const data = {
     location: {
         name: "London",
