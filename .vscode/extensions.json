@@ -1,7 +1,6 @@
 {
     "recommendations": [
         "bradlc.vscode-tailwindcss",
-        "steoates.autoimport",
         "zhuangtongfa.material-theme",
         "esbenp.prettier-vscode",
         "yoavbls.pretty-ts-errors"

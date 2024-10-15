@@ -1,4 +1,4 @@
-const Wind = (props) => {
+const Sunrise = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -10,12 +10,12 @@ const Wind = (props) => {
             strokeLinejoin="round"
             strokeWidth="2"
             viewBox="0 0 24 24"
-            dataicon="SvgWind"
+            data-icon="SvgSunrise"
             aria-hidden="true"
         >
-            <path d="M8.126 5.514a2.514 2.514 0 112.514 2.513H3m9.331 10.459a2.514 2.514 0 102.513-2.513H3m0-3.457h15.185a2.826 2.826 0 10-2.826-2.826"></path>
+            <path d="M15.988 7.4l-2.05-2.2-2.05-2.2v8.3m0-8.3l-2 2.2-2 2.2M3 21.02h18M3 17.958h1.75m14.546 0h1.75M16.906 12l1.381-1.382m-12.825-.112l1.381 1.381m1.069 6.071a4 4 0 018 0"></path>
         </svg>
     );
 };
 
-export default Wind;
+export default Sunrise;

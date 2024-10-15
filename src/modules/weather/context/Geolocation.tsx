@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from "react";
-import { GeoLocationSensorState } from "../hooks/useGeolocation";
+import { GeoLocationSensorState, useGeolocation } from "../hooks/useGeolocation";
 
 /**
  * Se crea el contexto y se le da los valores iniciales.
@@ -15,12 +15,8 @@ const GeolocationContext = createContext<GeoLocationSensorState>({
  * @returns
  */
 export const GeolocationContextProvider = ({ children }: { children: ReactNode }) => {
-    // const geolocation = useGeolocation();
-    return (
-        <GeolocationContext.Provider value={{ loading: false, timestamp: Date.now() }}>
-            {children}
-        </GeolocationContext.Provider>
-    );
+    const geolocation = useGeolocation();
+    return <GeolocationContext.Provider value={geolocation}>{children}</GeolocationContext.Provider>;
 };
 
 /**

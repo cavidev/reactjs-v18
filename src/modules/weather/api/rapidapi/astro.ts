@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { useCurrentWeatherApiProps } from "types/weatherTypes";
 import { headers } from "../../../../utils/noUpload";
-import { baseUrl, wait } from "./utils";
+import { baseUrl, fetchTypedData, mockFetchTypedData } from "./utils";
 
-//@ts-check
 const data = {
     location: {
         name: "London",
@@ -28,8 +28,8 @@ const data = {
     },
 };
 
-const useAstroWeatherApi = ({ lat, lon, toUpdate = false }) => {
-    const RapidApi = new URL("/current.json", baseUrl);
+const useAstroWeatherApi = ({ lat, lon, isDev = false }: useCurrentWeatherApiProps) => {
+    const RapidApi = new URL("/astronomy.json", baseUrl);
     RapidApi.searchParams.set("lang", "es");
     RapidApi.searchParams.set("q", `${lat},${lon}`);
     const url = RapidApi.toString();
@@ -41,11 +41,11 @@ const useAstroWeatherApi = ({ lat, lon, toUpdate = false }) => {
     return useQuery({
         queryKey: ["useAstroWeatherApi"],
         queryFn: async () => {
-            if (toUpdate) {
-                const response = await fetch(url, options);
-                return await response.json();
+            if (!isDev) {
+                const response = fetchTypedData<typeof data, typeof options>(url, options);
+                return response;
             }
-            return await wait(10000, data);
+            return await mockFetchTypedData(6000, data);
         },
     });
 };

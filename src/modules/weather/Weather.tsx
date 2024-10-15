@@ -2,7 +2,7 @@ import { Card } from "primereact/card";
 import { useState } from "react";
 import Show from "../../hooks/Show/Show";
 import Loader from "../core/Loader/Loader";
-import useCurrentWeatherApi from "./api/rapidapi/current";
+import useForecastWeatherApi from "./api/rapidapi/forecast";
 import CloudDrizzle from "./assets/icons/cloud-drizzle";
 import Droplet from "./assets/icons/droplet";
 import Pressure from "./assets/icons/Pressure";
@@ -14,23 +14,24 @@ import Astronomy from "./components/Astronomy/Astronomy";
 import Current from "./components/Current";
 import Error from "./components/Error/Error";
 import Parameter from "./components/Parameters/Parameter";
-import { useGeolocation } from "./hooks/useGeolocation";
+import { GeolocationContextProvider, useContextGeolocation } from "./context/Geolocation";
 import "./Weather.css";
 
-const WeatherContent = ({ geolocation }: any) => {
-    const [toUpdate, SettoUpdate] = useState(true);
-    const apiCurrent = useCurrentWeatherApi({
+const WeatherContent = () => {
+    const [toUpdate, SetToUpdate] = useState(true);
+    const geolocation = useContextGeolocation();
+    const apiCall = useForecastWeatherApi({
         lat: geolocation.latitude!,
         lon: geolocation.longitude!,
         isDev: toUpdate,
     });
 
-    if (apiCurrent.error) return <Error />;
+    if (apiCall.error) return <Error />;
 
     return (
-        <Show when={!apiCurrent.isLoading || !apiCurrent.isFetching} fallback={<Loader />} keyed>
+        <Show when={!apiCall.isLoading || !apiCall.isFetching} fallback={<Loader />} keyed>
             {() => {
-                const data = apiCurrent.data!;
+                const data = apiCall.data!;
                 const current = {
                     temp: data.current.temp_c,
                     is_day: data.current.is_day,
@@ -68,7 +69,7 @@ const WeatherContent = ({ geolocation }: any) => {
                                         />
                                         <Parameter
                                             icon={<Sun />}
-                                            parameters={[{ description: "UV Radation", value: `${data?.current.uv}` }]}
+                                            parameters={[{ description: "UV Radiation", value: `${data?.current.uv}` }]}
                                         />
                                         <Parameter
                                             icon={<Pressure />}
@@ -106,8 +107,8 @@ const WeatherContent = ({ geolocation }: any) => {
                             Forecast
                             <button
                                 onClick={() => {
-                                    SettoUpdate(true);
-                                    apiCurrent.refetch();
+                                    SetToUpdate(true);
+                                    apiCall.refetch();
                                 }}
                             >
                                 Change Location {toUpdate}
@@ -127,11 +128,12 @@ const WeatherContent = ({ geolocation }: any) => {
 };
 
 const Weather = () => {
-    const geolocation = useGeolocation();
     return (
-        <Show when={!geolocation.loading} keyed>
-            <WeatherContent geolocation={geolocation} />
-        </Show>
+        <>
+            <GeolocationContextProvider>
+                <WeatherContent />
+            </GeolocationContextProvider>
+        </>
     );
 };
 

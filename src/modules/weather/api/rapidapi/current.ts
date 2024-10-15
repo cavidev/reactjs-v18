@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { WeatherData } from "~/../types/weatherTypes";
+import { useCurrentWeatherApiProps, WeatherData } from "~/../types/weatherTypes";
 import { headers } from "../../../../utils/noUpload";
 import { baseUrl, fetchTypedData, mockFetchTypedData } from "./utils";
 
@@ -15,47 +15,42 @@ const data = {
         localtime: "2024-09-28 17:43",
     },
     current: {
-        last_updated_epoch: 1727566200,
-        last_updated: "2024-09-28 17:30",
-        temp_c: 20.3,
-        temp_f: 68.5,
+        last_updated_epoch: 1727660700,
+        last_updated: "2024-09-29 19:45",
+        temp_c: 20.4,
+        temp_f: 68.7,
         is_day: 0,
         condition: {
-            text: "Lluvias con tormenta fuertes o moderadas en la región",
-            icon: "//cdn.weatherapi.com/weather/64x64/night/389.png",
-            code: 1276,
+            text: "Lluvia moderada",
+            icon: "//cdn.weatherapi.com/weather/64x64/night/302.png",
+            code: 1189,
         },
         wind_mph: 2.2,
         wind_kph: 3.6,
-        wind_degree: 315,
-        wind_dir: "NW",
-        pressure_mb: 1017.0,
-        pressure_in: 30.03,
-        precip_mm: 3.01,
-        precip_in: 0.12,
-        humidity: 100,
-        cloud: 100,
-        feelslike_c: 20.3,
-        feelslike_f: 68.5,
-        windchill_c: 18.6,
-        windchill_f: 65.6,
-        heatindex_c: 18.6,
-        heatindex_f: 65.6,
-        dewpoint_c: 18.3,
-        dewpoint_f: 65.0,
-        vis_km: 0.7,
-        vis_miles: 0.0,
-        uv: 4.0,
-        gust_mph: 3.5,
-        gust_kph: 5.6,
+        wind_degree: 144,
+        wind_dir: "SE",
+        pressure_mb: 1017,
+        pressure_in: 30.02,
+        precip_mm: 3.63,
+        precip_in: 0.14,
+        humidity: 94,
+        cloud: 75,
+        feelslike_c: 20.4,
+        feelslike_f: 68.7,
+        windchill_c: 18.5,
+        windchill_f: 65.3,
+        heatindex_c: 18.5,
+        heatindex_f: 65.3,
+        dewpoint_c: 18.4,
+        dewpoint_f: 65.1,
+        vis_km: 10,
+        vis_miles: 6,
+        uv: 1,
+        gust_mph: 6.7,
+        gust_kph: 10.8,
     },
 };
 
-interface useCurrentWeatherApiProps {
-    lat: number;
-    lon: number;
-    isDev: boolean;
-}
 /**
  * Llama al API del clima, recuperando los datos actuales con la latitud y la longitud.
  * @param param0

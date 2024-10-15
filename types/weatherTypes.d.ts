@@ -51,3 +51,9 @@ export interface WeatherData {
     location: Location;
     current: CurrentWeather;
 }
+
+export interface useCurrentWeatherApiProps {
+    lat: number;
+    lon: number;
+    isDev: boolean;
+}

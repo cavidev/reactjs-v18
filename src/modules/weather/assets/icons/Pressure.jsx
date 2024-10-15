@@ -7,9 +7,9 @@ const Pressure = () => {
             height="24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
         >
             <circle cx="32" cy="32" r="30" stroke="currentColor" fill="none" />
             <path d="M32 10 L32 34" stroke="currentColor" />

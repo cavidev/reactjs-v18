@@ -3,7 +3,7 @@ import "./Error.css";
 const Error = () => {
     return (
         <>
-            <div className="wrapper">
+            <div className="container flex flex-col">
                 <div className="cloud">
                     <div className="cloud_left"></div>
                     <div className="cloud_right"></div>

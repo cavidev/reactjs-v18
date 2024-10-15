@@ -28,8 +28,8 @@
 
 ### Built With
 
--   Desing System: [Prime React](https://primereact.org/installation/)
--   CSS Manager: [Taildwind](https://tailwindcss.com/)
+-   Design System: [Prime React](https://primereact.org/installation/)
+-   CSS Manager: [Tailwind](https://tailwindcss.com/)
 -   Icons?: [Chromicons](https://lifeomic.github.io/chromicons.com/)
 -   Manage API calls: [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
 
@@ -37,9 +37,9 @@
 
 ## About The Project
 
-### Directory arquicture
+### Directory architecture
 
--   [Screaming Arquicture](https://blog.cleancoder.com/uncle-bob/2011/09/30/Screaming-Architecture.html)
+-   [Screaming Architecture](https://blog.cleancoder.com/uncle-bob/2011/09/30/Screaming-Architecture.html)
 
 #### Libraries used by vite
 
@@ -52,10 +52,18 @@
 
 ### Page of weather (url:: localhost:5400/weather)
 
-Commit for testing
+### Graph
+
+<summary>
+https://codesandbox.io/p/sandbox/compassionate-night-kpqc8t?file=%2Fsrc%2FApp.js%3A56%2C9
+
+https://codesandbox.io/p/sandbox/quirky-yalow-3y6q4?file=%2Fsrc%2FcustomChart%2FLineChart.jsx%3A58%2C17-58%2C20
+
+</summary>
 
 Api to get the information:
 
+-   https://mycolor.space/?hex=%231B8159&sub=1 - please read it to change the theme color schema
 -   (Deprecated) https://home.openweathermap.org/
 -   (Used) https://rapidapi.com/weatherapi/api/weatherapi-com/
 

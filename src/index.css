@@ -1,46 +1,47 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
 /* IMPORTANT: Styled mode you must add the PrimeReact Theme here. Do not include in unstyled mode */
-@import 'primereact/resources/themes/bootstrap4-dark-purple/theme.css' layer(primereact);
+@import "primereact/resources/themes/vela-blue/theme.css" layer(primereact);
 /* @import url("./fonts/Forum/Forum-Regular.ttf");
 /* @import url("./fonts/Barlow/Barlow-Black.ttf"); */
 
 @layer tailwind-base {
-  @tailwind base;
+    @tailwind base;
 }
 
 @layer tailwind-utilities {
-  @tailwind components;
-  @tailwind utilities;
+    @tailwind components;
+    @tailwind utilities;
 }
 
 @font-face {
-  font-family: 'Barlow';
-  src: url('fonts/Barlow/Barlow-Regular.ttf') format('typetrue');
+    font-family: "Barlow";
+    src: url("fonts/Barlow/Barlow-Regular.ttf") format("typetrue");
 }
 
 @font-face {
-  font-family: 'Victor Mono';
-  src: url('fonts/Victor_Mono/VictorMono-Italic-VariableFont_wght.ttf') format('typetrue');
+    font-family: "Victor Mono";
+    src: url("fonts/Victor_Mono/VictorMono-Italic-VariableFont_wght.ttf") format("typetrue");
 }
 
 :root {
-  font-family: 'Barlow', 'Victor Mono', Helvetica;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+    font-family: "Barlow", "Victor Mono", Helvetica;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
 
-  color-scheme: dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 }
 
-html, body {
-  background-color: var(--surface-ground);
-  height: 100%;
-  margin: 0;
-  padding: 0;
+html,
+body {
+    background-color: var(--surface-ground);
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }

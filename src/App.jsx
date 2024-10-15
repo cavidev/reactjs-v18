@@ -1,8 +1,7 @@
-import Examples from "modules/examples/Examples";
-import ReactQuery from "modules/reactquery/ReactQuery";
 import Weather from "modules/weather/Weather";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
+import ReactQuery from "./modules/reactquery/ReactQuery";
 
 function App() {
     return (
@@ -15,7 +14,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="/weather" element={<Weather />} />
                     <Route path="/reactquery" element={<ReactQuery />} />
-                    <Route path="/examples" element={<Examples />} />
+                    <Route path="/graph" element={<>Please add graph d3 here!</>} />
 
                     {/* Using path="*"" means "match anything", so this route
                   acts like a catch-all for URLs that we don't have explicit
@@ -47,8 +46,8 @@ function Layout() {
             url: "/reactquery",
         },
         {
-            label: "Examples",
-            url: "/examples",
+            label: "D3 Graph",
+            url: "/graph",
         },
     ];
     return (
@@ -70,23 +69,12 @@ function Home() {
     return (
         <div>
             <h2>Home</h2>
-            <MaskDemo />
+            add my name here with animation that can change like a module
         </div>
     );
 }
 
-import { InputOtp } from "primereact/inputotp";
-import { useState } from "react";
 // import Examples from "./modules/examples/Examples";
-function MaskDemo() {
-    const [token, setTokens] = useState();
-
-    return (
-        <div className="card flex justify-content-center">
-            <InputOtp value={token} onChange={(e) => setTokens(e.value)} mask />
-        </div>
-    );
-}
 
 function NoMatch() {
     return (

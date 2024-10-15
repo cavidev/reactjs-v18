@@ -7,10 +7,10 @@ const ThermometerSun = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-thermometer-sun"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-thermometer-sun"
         >
             <path d="M12 9a4 4 0 0 0-2 7.5" />
             <path d="M12 3v2" />

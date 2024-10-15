@@ -3,8 +3,14 @@
     "trailingComma": "es5",
     "singleQuote": false,
     "tabWidth": 4,
-    "arrowParens": "always",
+    "arrowParent": "always",
     "printWidth": 120,
-    "plugins": ["react", "eslint-plugin-react", "eslint-plugin-react-hooks", "@prettier/plugin-xml"]
+    "plugins": [
+        "react",
+        "eslint-plugin-react",
+        "prettier-plugin-tailwindcss",
+        "prettier-plugin-organize-imports",
+        "eslint-plugin-react-hooks",
+        "@prettier/plugin-xml"
+    ]
 }
-

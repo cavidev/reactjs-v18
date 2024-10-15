@@ -2,9 +2,9 @@ const Thermometer = () => {
     return (
         <svg
             fill="currentColor"
-            width="32px"
-            height="32px"
-            viewBox="0 0 32 32"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 30"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
         >
