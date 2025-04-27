@@ -1,7 +1,9 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
 /* IMPORTANT: Styled mode you must add the PrimeReact Theme here. Do not include in unstyled mode */
-@import "primereact/resources/themes/vela-blue/theme.css" layer(primereact);
+@import "primereact/resources/themes/lara-dark-blue/theme.css" layer(primereact);
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
 /* @import url("./fonts/Forum/Forum-Regular.ttf");
 /* @import url("./fonts/Barlow/Barlow-Black.ttf"); */
 
@@ -40,7 +42,7 @@
 
 html,
 body {
-    background-color: var(--surface-ground);
+    /* background-color: var(--surface-ground);*/
     height: 100%;
     margin: 0;
     padding: 0;

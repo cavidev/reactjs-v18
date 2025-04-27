@@ -7,7 +7,6 @@
     "printWidth": 120,
     "plugins": [
         "react",
-        "eslint-plugin-react",
         "prettier-plugin-tailwindcss",
         "prettier-plugin-organize-imports",
         "eslint-plugin-react-hooks",

@@ -47,7 +47,7 @@ const WeatherContent = () => {
                 return (
                     <div className="flex flex-row h-full">
                         <div className="w-2/3 flex flex-col gap-1 p-4">
-                            <div className="h-1/3 w-full flex flex-row">
+                            <div className="h-1/3 bg-theme-base w-full flex flex-row">
                                 <Current {...current} />
                             </div>
                             <div className="h-1/3">
