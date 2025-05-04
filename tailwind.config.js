@@ -4,7 +4,10 @@ import { fileURLToPath, URL } from "url";
 export default {
     content: [
         fileURLToPath(new URL("./src/**/*.{html,js,jsx,ts,tsx,mdx}", import.meta.url)),
+        fileURLToPath(new URL("./src/modules/**/*.{html,js,jsx,ts,tsx,mdx}", import.meta.url)),
         fileURLToPath(new URL("./node_modules/primereact/**/*.{js,ts,jsx,tsx}", import.meta.url)),
+        fileURLToPath(new URL("./packages/home/**/*.{js,ts,jsx,tsx}", import.meta.url)),
+        fileURLToPath(new URL("./packages/text/**/*.{js,ts,jsx,tsx}", import.meta.url)),
     ],
     theme: {
         colors: {
@@ -41,6 +44,8 @@ export default {
         extend: {
             animation: {
                 meteor: "meteor 5s linear infinite",
+                aurora: "aurora 8s ease-in-out infinite alternate",
+                ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
             },
             keyframes: {
                 meteor: {
@@ -49,6 +54,36 @@ export default {
                     "100%": {
                         transform: "rotate(215deg) translateX(-500px)",
                         opacity: 0,
+                    },
+                },
+                aurora: {
+                    "0%": {
+                        backgroundPosition: "0% 50%",
+                        transform: "rotate(-5deg) scale(0.9)",
+                    },
+                    "25%": {
+                        backgroundPosition: "50% 100%",
+                        transform: "rotate(5deg) scale(1.1)",
+                    },
+                    "50%": {
+                        backgroundPosition: "100% 50%",
+                        transform: "rotate(-3deg) scale(0.95)",
+                    },
+                    "75%": {
+                        backgroundPosition: "50% 0%",
+                        transform: "rotate(3deg) scale(1.05)",
+                    },
+                    "100%": {
+                        backgroundPosition: "0% 50%",
+                        transform: "rotate(-5deg) scale(0.9)",
+                    },
+                },
+                ripple: {
+                    "0%, 100%": {
+                        transform: "translate(-50%, -50%) scale(1)",
+                    },
+                    "50%": {
+                        transform: "translate(-50%, -50%) scale(0.9)",
                     },
                 },
             },

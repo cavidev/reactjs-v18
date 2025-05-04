@@ -1,0 +1,28 @@
+{
+    "name": "home",
+    "version": "1.0.0",
+    "description": "Monorepo for the home page",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "dependencies": {
+        "framer-motion": "*",
+        "motion": "^12.9.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "peerDependencies": {
+        "framer-motion": "*",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "home"
+    ],
+    "author": "Carlos Villafuerte",
+    "license": "MIT"
+}

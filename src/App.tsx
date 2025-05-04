@@ -55,7 +55,7 @@ function Layout() {
     return (
         <div className="bg-theme-base flex-col flex  h-full w-full">
             <div className="px-28 py-4">
-                <Menubar className=" flex bg-theme-1" model={items}></Menubar>
+                <Menubar className="flex bg-theme-1 border-none" model={items}></Menubar>
             </div>
 
             <Outlet />

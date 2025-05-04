@@ -1,0 +1,22 @@
+{
+    "name": "text",
+    "version": "1.0.0",
+    "description": "Text Animated",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "motion": "^12.9.2"
+    },
+    "peerDependencies": {
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "keywords": [
+        "animated",
+        "text"
+    ],
+    "author": "Carlos Villafuerte",
+    "license": "MIT"
+}
