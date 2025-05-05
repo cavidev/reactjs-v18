@@ -3,7 +3,7 @@ import { Home } from "packages/home";
 import { Menubar } from "primereact/menubar";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
-import ReactQuery from "./modules/reactquery/ReactQuery";
+import { Tasks } from "./modules/tasks";
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/weather" element={<Weather />} />
-                    <Route path="/reactquery" element={<ReactQuery />} />
+                    <Route path="/tasks" element={<Tasks />} />
                     <Route path="/graph" element={<>Please add graph d3 here!</>} />
 
                     {/* Using path="*"" means "match anything", so this route
@@ -42,8 +42,8 @@ const items = [
         url: "/weather",
     },
     {
-        label: "React Query",
-        url: "/reactquery",
+        label: "Tasks",
+        url: "/tasks",
     },
     {
         label: "D3 Graph",
