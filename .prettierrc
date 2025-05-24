@@ -1,0 +1,15 @@
+{
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": false,
+    "tabWidth": 4,
+    "arrowParent": "always",
+    "printWidth": 120,
+    "plugins": [
+        "react",
+        "prettier-plugin-tailwindcss",
+        "prettier-plugin-organize-imports",
+        "eslint-plugin-react-hooks",
+        "@prettier/plugin-xml"
+    ]
+}

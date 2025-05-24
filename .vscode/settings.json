@@ -1,0 +1,41 @@
+{
+    "scm.inputFontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
+    "gitlens.blame.fontFamily": "'Anonymous Pro', 'JetBrains Mono', default",
+    "terminal.integrated.fontFamily": "'Consolas','Anonymous Pro'",
+    "terminal.integrated.fontSize": 14,
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnType": false,
+    "[javascript]": {
+        /*Todos los archivos .js se van a formatear con esbenp.prettier-vscode */
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }, //
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript, typescriptreact]": {
+        /*Todos los archivos .tsx se van a formatear con vscode.typescript-language-features */
+        // "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "prettier.printWidth": 100,
+    "prettier.configPath": ".prettierrc",
+    "html.format.indentInnerHtml": true,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "cSpell.words": [
+        "Chromicons",
+        "clsx",
+        "primeicons",
+        "primereact",
+        "rapidapi",
+        "reactquery",
+        "tailwindcss",
+        "tanstack"
+    ],
+    "cSpell.dictionaries": ["es"],
+    "cSpell.language": "en,es"
+}

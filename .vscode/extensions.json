@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "bradlc.vscode-tailwindcss",
+        "zhuangtongfa.material-theme",
+        "esbenp.prettier-vscode",
+        "yoavbls.pretty-ts-errors"
+    ]
+}
