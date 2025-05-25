@@ -15,7 +15,7 @@ export default defineConfig({
         https: false, // Usa HTTPS si es true
     },
     plugins: [react(), tsconfigPaths()],
-    base: isProd ? "https://cavidev.github.io/reactjs-v18/" : "/",
+    base: isProd ? "/reactjs-v18/" : "/", // https://cavidev.github.io
     resolve: {
         alias: [
             { find: "~", replacement: path.resolve(__dirname, "src") },
