@@ -15,9 +15,9 @@ const rootElement = document.getElementById("root");
 if (!rootElement) {
     throw new Error("Root element not found");
 }
-ReactDOM.createRoot(rootElement).render(
+ReactDOM.createRoot(rootElement!).render(
     <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <BrowserRouter basename="/reactjs-v18">
             <PrimeReactProvider value={{ unstyled: true, pt: Tailwind, ripple: true }}>
                 <App />
             </PrimeReactProvider>

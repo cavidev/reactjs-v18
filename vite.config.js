@@ -1,7 +1,11 @@
 import react from "@vitejs/plugin-react";
+import path from "path";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+const isProd = process.env.NODE_ENV === "production";
+
+console.log("__dirname", path.resolve(__dirname, "src"));
 // https://vitejs.dev/config/
 export default defineConfig({
     server: {
@@ -10,15 +14,16 @@ export default defineConfig({
         open: true, // Abrir el navegador automáticamente
         https: false, // Usa HTTPS si es true
     },
-    plugins: [
-        react(),
-        ,
-        tsconfigPaths(), // Añadir soporte para los paths del tsconfig
-    ],
+    plugins: [react(), tsconfigPaths()],
+    base: isProd ? "https://cavidev.github.io/reactjs-v18/" : "/",
     resolve: {
         alias: [
-            { find: "~", replacement: "/src" },
-            { find: "modules", replacement: "/src/modules" },
+            { find: "~", replacement: path.resolve(__dirname, "src") },
+            { find: "modules", replacement: path.resolve(__dirname, "src/modules") },
+            { find: "packages", replacement: path.resolve(__dirname, "packages") },
         ],
+    },
+    build: {
+        //sourcemap: true,
     },
 });

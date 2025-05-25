@@ -16,15 +16,16 @@
     @tailwind utilities;
 }
 
-@font-face {
+/*@font-face {
     font-family: "Barlow";
-    src: url("fonts/Barlow/Barlow-Regular.ttf") format("typetrue");
+     src: url("fonts/Barlow/Barlow-Regular.ttf") format("typetrue"); 
 }
 
 @font-face {
     font-family: "Victor Mono";
     src: url("fonts/Victor_Mono/VictorMono-Italic-VariableFont_wght.ttf") format("typetrue");
 }
+    */
 
 :root {
     font-family: "Barlow", "Victor Mono", Helvetica;

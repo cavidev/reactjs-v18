@@ -20,7 +20,7 @@
         "paths": {
             "~/*": ["./src/*"],
             "modules/*": ["./src/modules/*"],
-            "libs/*": ["./packages/*"]
+            "packages/*": ["./packages/*"]
         }
     },
     "exclude": ["node_modules"]

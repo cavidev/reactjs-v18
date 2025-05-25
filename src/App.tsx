@@ -2,26 +2,19 @@ import Weather from "modules/weather/Weather";
 import { Home } from "packages/home";
 import { Menubar } from "primereact/menubar";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Tasks } from "./modules/tasks";
+
+import { MenuItem } from "primereact/menuitem";
+import "./App.css";
 
 function App() {
     return (
         <>
-            {/* Routes nest inside one another. Nested route paths build upon
-              parent route paths, and nested route elements render inside
-              parent route elements. See the note about <Outlet> below. */}
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/weather" element={<Weather />} />
                     <Route path="/tasks" element={<Tasks />} />
-                    <Route path="/graph" element={<>Please add graph d3 here!</>} />
-
-                    {/* Using path="*"" means "match anything", so this route
-                        acts like a catch-all for URLs that we don't have explicit
-                        routes for. */}
-                    <Route path="/*" element={<NoMatch />} />
                 </Route>
             </Routes>
         </>
@@ -30,11 +23,11 @@ function App() {
 
 export default App;
 
-const items = [
+const items: MenuItem[] = [
     {
         label: "Home",
         icon: "pi pi-home",
-        url: "/",
+        url: "/reactjs-v18",
     },
     {
         label: "Weather",
@@ -43,11 +36,11 @@ const items = [
     },
     {
         label: "Tasks",
-        url: "/tasks",
+        url: "/reactjs-v18/tasks",
     },
     {
-        label: "D3 Graph",
-        url: "/graph",
+        label: "Worker",
+        url: "/reactjs-v18/worker",
     },
 ];
 

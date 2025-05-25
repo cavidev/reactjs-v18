@@ -1,4 +1,4 @@
-import { AuroraText, Ripple } from "libs/text";
+import { AuroraText, Ripple } from "packages/text";
 import { FC } from "react";
 
 const Home: FC = () => {
@@ -19,11 +19,7 @@ const Home: FC = () => {
             <div className="flex flex-row w-1/3 items-center justify-center">
                 <div className="relative w-full h-full justify-center content-center overflow-hidden">
                     <div className="z-10 flex flex-col justify-center items-center">
-                        <img
-                            src="../../../public/me.png"
-                            alt="Carlos Villafuerte"
-                            className="rounded-full w-96 h-96 "
-                        />
+                        <img src="me.png" alt="Carlos Villafuerte" className="rounded-full w-96 h-96 " />
                     </div>
                     <Ripple className="items-center justify-center" />
                 </div>
