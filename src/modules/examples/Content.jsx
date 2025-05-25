@@ -1,5 +1,4 @@
-import Weather from "../../Components/Weather/Weather";
-import Father from "../../hooks/Show/Father";
+import Father from "../../lib/Show/Father";
 
 const Content = () => {
     return (

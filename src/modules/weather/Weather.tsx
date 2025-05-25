@@ -1,6 +1,6 @@
 import { Card } from "primereact/card";
 import { useState } from "react";
-import Show from "../../hooks/Show/Show";
+import Show from "../../lib/Show/Show";
 import Loader from "../core/Loader/Loader";
 import useForecastWeatherApi from "./api/rapidapi/forecast";
 import CloudDrizzle from "./assets/icons/cloud-drizzle";

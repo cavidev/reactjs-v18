@@ -15,10 +15,10 @@
     <p align="center">
         In this app we are going to find small pieces of projects, the idea is to apply my knowledge and learn more in React.js v18
         <br />
-        <a href="https://github.com/cavidev/reactjs-v18"><strong>Explore the docs »</strong></a>
+        <a href="https://github.com/cavidev/reactjs-v18/wiki"><strong>Explore the docs »</strong></a>
         <br />
         <br />
-        <a href="https://github.com/cavidev/reactjs-v18">View Demo</a>
+        <a href="https://cavidev.github.io/reactjs-v18/">View Demo</a>
         ·
         <a href="https://github.com/cavidev/reactjs-v18/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
         ·
@@ -39,6 +39,8 @@
 
 ### Directory architecture
 
+-   Module
+-   Monorepo
 -   [Screaming Architecture](https://blog.cleancoder.com/uncle-bob/2011/09/30/Screaming-Architecture.html)
 
 #### Libraries used by vite

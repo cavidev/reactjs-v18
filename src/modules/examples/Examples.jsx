@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Show from "~/hooks/Show/Show";
+import Show from "~/lib/Show/Show";
 // import Show_ from "../../hooks/Show/Show";
-import For from "~/hooks/For/For";
+import For from "~/lib/For/For";
 
 const emoji = new Array(10000).fill("👾");
 

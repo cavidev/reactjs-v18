@@ -1,5 +1,5 @@
 import { Fieldset } from "primereact/fieldset";
-import Show from "~/hooks/Show/Show";
+import Show from "~/lib/Show/Show";
 import useForecastWeatherApi from "../../api/rapidapi/forecast";
 import { useContextGeolocation } from "../../context/Geolocation";
 

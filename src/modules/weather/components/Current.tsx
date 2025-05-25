@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale/es";
-import Show from "~/hooks/Show/Show";
+import Show from "~/lib/Show/Show";
 import useAstroWeatherApi from "../api/rapidapi/astro";
 import Sunrise from "../assets/icons/sunrise";
 import { useContextGeolocation } from "../context/Geolocation";

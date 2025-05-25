@@ -1,7 +1,7 @@
 import { Ripple } from "primereact/ripple";
 import { Skeleton } from "primereact/skeleton";
-import For from "~/hooks/For/For";
-import Show from "~/hooks/Show/Show";
+import For from "~/lib/For/For";
+import Show from "~/lib/Show/Show";
 import "./Parameter.css";
 
 //@ts-check

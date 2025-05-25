@@ -5,7 +5,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const isProd = process.env.NODE_ENV === "production";
 
-console.log("__dirname", path.resolve(__dirname, "src"));
 // https://vitejs.dev/config/
 export default defineConfig({
     server: {

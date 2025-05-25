@@ -28,12 +28,12 @@ const reducer = (state: List[], action: any) => {
     switch (action.type) {
         case TASK.ADD: {
             return [
-                ...state,
                 {
                     id: action.id,
                     text: action.text,
                     done: false,
                 },
+                ...state,
             ];
         }
         case TASK.CHANGE: {
