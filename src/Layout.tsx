@@ -10,7 +10,7 @@ export const Layout = () => {
             icon: "pi pi-home",
             command: () => navigate("/"),
         },
-        {
+        /*{
             label: "Weather",
             icon: "pi pi-cloud",
             command: () => navigate("/weather"),
@@ -19,7 +19,7 @@ export const Layout = () => {
             label: "Tasks",
             icon: "pi pi-list",
             command: () => navigate("/tasks"),
-        },
+        },*/
     ];
 
     return (
