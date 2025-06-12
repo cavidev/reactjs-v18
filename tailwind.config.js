@@ -2,6 +2,7 @@
 import { fileURLToPath, URL } from "url";
 
 export default {
+    darkMode: "class",
     content: [
         fileURLToPath(new URL("./src/**/*.{html,js,jsx,ts,tsx,mdx}", import.meta.url)),
         fileURLToPath(new URL("./src/modules/**/*.{html,js,jsx,ts,tsx,mdx}", import.meta.url)),
@@ -10,38 +11,32 @@ export default {
         fileURLToPath(new URL("./packages/text/**/*.{js,ts,jsx,tsx}", import.meta.url)),
     ],
     theme: {
-        colors: {
-            transparent: "transparent",
-            current: "currentColor",
-            inherit: "inherit",
-            theme: {
-                base: {
-                    lightest: "#A49FB5",
-                    light: "#7C7692",
-                    DEFAULT: "#4A4F6D",
-                    dark: "#241F30",
-                    darkest: "#191524",
+        extend: {
+            colors: {
+                transparent: "transparent",
+                current: "currentColor",
+                inherit: "inherit",
+                background: {
+                    light: "#F4F6FA",
+                    dark: "#4A4F6D",
                 },
-                accent: {
-                    red: "#FF6B6B",
-                    teal: "#4ECDC4",
-                    yellow: "#FFD93D",
-                    purple: "#9D4EDD",
+                navbar: {
+                    light: "#2B5D68",
+                    dark: "#457F8C",
+                },
+                heading: {
+                    light: "#2B5D68",
+                    dark: "#457F8C",
                 },
                 text: {
-                    light: "#E0E0E0",
-                    DEFAULT: "#FFFFFF",
+                    light: "#2E2E2E", // nuevo color más amigable
+                    dark: "#FFFFFF",
                 },
-                0: "#544059",
-                1: "#457F8C",
-                2: "#C1D9D2",
-                3: "#3D435C",
-                4: "#33384C",
-                5: "#4A4F6D",
+                subtext: {
+                    light: "#768E95",
+                    dark: "#C0C7D6",
+                },
             },
-        },
-
-        extend: {
             animation: {
                 meteor: "meteor 5s linear infinite",
                 aurora: "aurora 8s ease-in-out infinite alternate",
