@@ -1,6 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { PrimeReactProvider } from "primereact/api";
-import Tailwind from "primereact/passthrough/tailwind";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
@@ -18,9 +16,13 @@ if (!rootElement) {
 ReactDOM.createRoot(rootElement!).render(
     <QueryClientProvider client={queryClient}>
         <BrowserRouter basename="/reactjs-v18">
-            <PrimeReactProvider value={{ unstyled: true, pt: Tailwind, ripple: true }}>
-                <App />
-            </PrimeReactProvider>
+            <App />
         </BrowserRouter>
     </QueryClientProvider>
 );
+/*
+            <PrimeReactProvider value={{ unstyled: true, pt: Tailwind, ripple: true }}>
+                <App />
+            </PrimeReactProvider>
+
+*/

@@ -17,6 +17,13 @@ export const Layout = () => {
             className:
                 "bg-navbar-light dark:bg-navbar-dark dark:hover:bg-opacity-20 dark:hover:bg-transparent rounded-none",
         },
+        {
+            label: "Experience",
+            icon: "pi pi-book",
+            command: () => navigate("/experience"),
+            className:
+                "bg-navbar-light dark:bg-navbar-dark dark:hover:bg-opacity-20 dark:hover:bg-transparent rounded-none",
+        },
         /*{
             label: "Weather",
             icon: "pi pi-cloud",
@@ -31,6 +38,7 @@ export const Layout = () => {
 
     return (
         <div
+            id="layout"
             className={clsx(
                 "bg-background-light dark:bg-background-dark flex-col flex h-full w-full transition-colors"
             )}
@@ -50,7 +58,9 @@ export const Layout = () => {
                     }
                 ></Menubar>
             </div>
-            <Outlet />
+            <div className="flex flex-row w-full h-screen px-24">
+                <Outlet />
+            </div>
         </div>
     );
 };

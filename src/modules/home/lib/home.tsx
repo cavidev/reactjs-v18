@@ -5,7 +5,7 @@ import { Linkedin } from "~/components/LinkenId";
 
 const Home: FC = () => {
     return (
-        <div className=" flex flex-row w-full h-screen px-24 ">
+        <>
             <div className="flex px-8 flex-row w-2/3 items-center">
                 <div className="flex text-text-light dark:text-text-dark flex-col gap-4">
                     <h1 className="flex text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl items-center justify-center">
@@ -54,7 +54,7 @@ const Home: FC = () => {
                 </div>
                 <MorphingText texts={["React", "JavaScript", "Typescript", "NodeJs", "Java", "AngularJs"]} />
             </div>
-        </div>
+        </>
     );
 };
 
