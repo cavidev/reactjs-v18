@@ -6,6 +6,7 @@ import { Layout } from "./Layout";
 import "./App.css";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Experience } from "./modules/experiance";
+import { TodoApp } from "./modules/TodoApp";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="experience" element={<Experience />} />
                     <Route path="weather" element={<Weather />} />
+                    <Route path="todo" element={<TodoApp />} />
                 </Route>
             </Routes>
         </ThemeProvider>

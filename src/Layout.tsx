@@ -24,6 +24,11 @@ export const Layout = () => {
             className:
                 "bg-navbar-light dark:bg-navbar-dark dark:hover:bg-opacity-20 dark:hover:bg-transparent rounded-none",
         },
+        {
+            label: "TodoApp",
+            icon: "pi pi-list",
+            command: () => navigate("/todo"),
+        },
         /*{
             label: "Weather",
             icon: "pi pi-cloud",
