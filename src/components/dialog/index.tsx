@@ -5,7 +5,10 @@ import Show from "~/lib/Show/Show";
 import { PFC } from "~/lib/utils";
 
 export const DialogContent = forwardRef<HTMLDivElement, any>(({ onClose, children }, ref) => (
-    <div ref={ref} className="w-1/2 h-1/2 rounded bg-heading-dark flex flex-col">
+    <div
+        ref={ref}
+        className="w-1/2 h-1/2 overflow-auto rounded bg-surface-light dark:bg-surface-dark flex flex-col p-6"
+    >
         <button onClick={onClose}>x</button>
         {children}
     </div>
@@ -25,15 +28,12 @@ export const Dialog: PFC<DialogProps> = ({ isOpen, onClose, children }) => {
     return (
         <Show when={isOpen}>
             {createPortal(
-                <dialog
-                    open
-                    className="backdrop-blur-sm bg-white/30 z-10 flex justify-center items-center w-full h-dvh"
-                >
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm">
                     <DialogContent onClose={onClose} ref={ref}>
                         {children}
                     </DialogContent>
-                </dialog>,
-                document.getElementById("layout")!
+                </div>,
+                document.getElementById("root")!
             )}
         </Show>
     );

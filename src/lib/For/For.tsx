@@ -9,7 +9,7 @@ import { cloneElement, Fragment, ReactElement } from "react";
  */
 
 interface Item {
-    id: string;
+    id?: string | undefined;
 }
 
 type ForProps<T extends Item> = {

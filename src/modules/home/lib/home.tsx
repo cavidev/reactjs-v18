@@ -1,15 +1,20 @@
 import { AuroraText, MorphingText } from "packages/text";
-import { FC } from "react";
-import { Button } from "~/components/Button";
+import { FC, useState } from "react";
+import { Button } from "~/components/button";
 import { Linkedin } from "~/components/LinkenId";
 
 const Home: FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <>
-            <div className="flex px-8 flex-row w-2/3 items-center">
-                <div className="flex text-text-light dark:text-text-dark flex-col gap-4">
+        <div className="flex flex-row">
+            <div className="flex px-8 flex-row w-2/3 items-center ">
+                <div className="flex text-text-light dark:text-text-dark flex-col gap-4 px-4">
                     <h1 className="flex text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl items-center justify-center">
-                        I'm &nbsp; <AuroraText speed={5}>Carlos Villafuerte</AuroraText>
+                        I'm &nbsp;
+                        <AuroraText speed={2}>
+                            Carlos <br />
+                            &nbsp; &nbsp; Villafuerte
+                        </AuroraText>
                     </h1>
                     <p className="text-theme-light-text dark:text-theme-dark-text">
                         ..a seasoned software engineer with 5 years of experience in the industry. As a passionate
@@ -43,10 +48,10 @@ const Home: FC = () => {
             </div>
             <div className="flex flex-col w-1/3 items-center justify-center text-text-light dark:text-text-dark">
                 <div className=" relative w-full flex justify-center content-center overflow-hidden">
-                    <div className="border-solid border-[6px] border-navbar-light dark:border-navbar-dark w-96 h-96 rounded-full flex flex-col justify-center items-center">
+                    <div className="border-solid border-[6px] border-surface-light dark:border-surface-dark w-96 h-96 rounded-full flex flex-col justify-center items-center">
                         <div
                             style={{ border: "10px" }}
-                            className="border-solid bg-navbar-light dark:bg-navbar-dark p-1 w-80 h-80 rounded-full flex flex-col justify-center items-center"
+                            className="border-solid bg-surface-light dark:bg-surface-dark p-1 w-80 h-80 rounded-full flex flex-col justify-center items-center"
                         >
                             <img src="me1.png" alt="Carlos Villafuerte" className="rounded-full w-72 h-72 " />
                         </div>
@@ -54,7 +59,7 @@ const Home: FC = () => {
                 </div>
                 <MorphingText texts={["React", "JavaScript", "Typescript", "NodeJs", "Java", "AngularJs"]} />
             </div>
-        </>
+        </div>
     );
 };
 

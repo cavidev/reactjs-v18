@@ -1,4 +1,4 @@
-import { Fieldset } from "primereact/fieldset";
+//import { Fieldset } from "primereact/fieldset";
 import Show from "~/lib/Show/Show";
 import useForecastWeatherApi from "../../api/rapidapi/forecast";
 import { useContextGeolocation } from "../../context/Geolocation";
@@ -7,7 +7,7 @@ const Astronomy = () => {
     const geolocation = useContextGeolocation();
 
     return (
-        <Fieldset legend="Astronomy">
+        <div className="flex flex-col items-center justify-center h-full w-full">
             <Show when={!geolocation.loading} fallback={<>I am loading...</>} keyed key={1}>
                 {() => {
                     const { data } = useForecastWeatherApi({
@@ -19,7 +19,7 @@ const Astronomy = () => {
                     return <>Tengo la data</>;
                 }}
             </Show>
-        </Fieldset>
+        </div>
     );
 };
 

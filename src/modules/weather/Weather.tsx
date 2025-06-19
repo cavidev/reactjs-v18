@@ -1,5 +1,6 @@
-import { Card } from "primereact/card";
+//import { Card } from "primereact/card";
 import { useState } from "react";
+import { Card } from "~/components/card";
 import Show from "../../lib/Show/Show";
 import Loader from "../core/Loader/Loader";
 import useForecastWeatherApi from "./api/rapidapi/forecast";

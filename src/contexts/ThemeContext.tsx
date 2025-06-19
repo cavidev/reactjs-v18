@@ -1,4 +1,5 @@
-import { createContext, Dispatch, FC, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, FC, ReactNode, SetStateAction, useContext, useEffect } from "react";
+import useLocalStorage from "~/hooks/useLocalStorage";
 
 interface Theme {
     theme: "light" | "dark";
@@ -13,12 +14,11 @@ export const ThemeContext = createContext<Theme>({
 });
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const [theme, setTheme] = useState<th>("dark");
+    const [theme, setTheme] = useLocalStorage("theme", "dark");
 
     useEffect(() => {
         const root = window.document.documentElement;
-        root.classList.remove(theme === "light" ? "dark" : "light");
-        root.classList.add(theme);
+        root.classList.toggle("dark", theme === "dark");
     }, [theme]);
 
     return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;

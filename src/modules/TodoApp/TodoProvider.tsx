@@ -9,6 +9,14 @@ const TodoContext = createContext<TodoCon | null>(null);
 
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useTodoReducer();
+
+    /*useEffect(() => {
+        (async () => {
+            const data = await loadTodos();
+            dispatch({ payload: "set", data: data.todos });
+        })();
+    }, []);*/
+
     return <TodoContext.Provider value={{ state, dispatch }}>{children}</TodoContext.Provider>;
 };
 

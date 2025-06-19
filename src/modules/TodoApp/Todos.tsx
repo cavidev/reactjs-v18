@@ -3,6 +3,7 @@ import { useTodos } from "./TodoProvider";
 
 export const Todos = () => {
     const { state: todos } = useTodos();
+    console.log("Todos", todos);
     return (
         <div className="flex flex-col gap-4 ">
             {todos.map((todo) => {

@@ -1,5 +1,5 @@
-import { Ripple } from "primereact/ripple";
-import { Skeleton } from "primereact/skeleton";
+//import { Ripple } from "primereact/ripple";
+// import { Skeleton } from "primereact/skeleton";
 import For from "~/lib/For/For";
 import Show from "~/lib/Show/Show";
 import "./Parameter.css";
@@ -19,7 +19,7 @@ const Parameter = (props) => {
                             console.log("isLoading", isLoading);
                             return (
                                 <div key={index} className="flex flex-col gap-1 select-none">
-                                    <Show when={!isLoading} fallback={<Skeleton width="100%" height="100%"></Skeleton>}>
+                                    <Show when={!isLoading} fallback={<div width="100%" height="100%"></div>}>
                                         <span className="text-2xl leading-5 font-semibold">{parameter.value}</span>
                                         <span className="text-xs italic">{parameter.description}</span>
                                     </Show>
@@ -28,7 +28,6 @@ const Parameter = (props) => {
                         }}
                     </For>
                 </div>
-                <Ripple />
             </div>
         </>
     );

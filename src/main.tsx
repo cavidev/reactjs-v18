@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import "primeicons/primeicons.css";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import "./index.css";
 
 const queryClient = new QueryClient();
@@ -14,15 +14,11 @@ if (!rootElement) {
     throw new Error("Root element not found");
 }
 ReactDOM.createRoot(rootElement!).render(
-    <QueryClientProvider client={queryClient}>
-        <BrowserRouter basename="/reactjs-v18">
-            <App />
-        </BrowserRouter>
-    </QueryClientProvider>
-);
-/*
-            <PrimeReactProvider value={{ unstyled: true, pt: Tailwind, ripple: true }}>
+    <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter basename="/reactjs-v18">
                 <App />
-            </PrimeReactProvider>
-
-*/
+            </BrowserRouter>
+        </QueryClientProvider>
+    </ThemeProvider>
+);

@@ -15,6 +15,10 @@ export interface Actions {
 }
 
 const reducer = (state: Todo[], action: any) => {
+    if (action.payload === "set") {
+        return action.data;
+    }
+
     if (action.payload === "add" && action.data !== "") {
         return [{ id: crypto.randomUUID(), text: action.data, done: false }, ...state];
     }

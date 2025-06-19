@@ -1,13 +1,15 @@
+import clsx from "clsx";
 import { FC } from "react";
 
-interface SwitchProp {
+interface ToggleProp {
     checked?: boolean;
     onChange: (value: boolean) => void;
     title?: string;
+    className?: string;
 }
-export const Switch: FC<SwitchProp> = ({ checked, onChange, title = "" }) => {
+export const Toggle: FC<ToggleProp> = ({ checked, onChange, title = "", className }) => {
     return (
-        <label className="relative inline-flex items-center cursor-pointer">
+        <label className={clsx(className, "relative inline-flex items-center cursor-pointer")}>
             <input
                 title={title}
                 className="sr-only peer"

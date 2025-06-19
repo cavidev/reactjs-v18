@@ -1,9 +1,12 @@
-import { Button } from "primereact/button";
 //import { Card } from "primereact/card";
-import { Timeline } from "primereact/timeline";
+//import { Timeline } from "primereact/timeline";
 import { useState } from "react";
+import { Button } from "~/components/button";
 import { Card } from "~/components/card";
 import { Dialog } from "~/components/dialog";
+import Stepper from "~/components/steps";
+import Timeline from "~/components/timeline";
+import Show from "~/lib/Show/Show";
 import { Resume, experiance } from "./experiance";
 import "./experiance.css";
 
@@ -17,7 +20,7 @@ const customizedContent = (item: Resume, key: number, setIsOpen: any) => {
             <>
                 <Button
                     onClick={() => setIsOpen(true)}
-                    size="small"
+                    // size="small"
                     label="Read more"
                     className="p-button-text"
                 ></Button>
@@ -27,27 +30,17 @@ const customizedContent = (item: Resume, key: number, setIsOpen: any) => {
 };
 
 export const Experience = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [key, setKey] = useState(0);
+    const [isOpen, setIsOpen] = useState(-1);
     return (
-        <>
-            <Timeline
-                value={experiance}
-                align="alternate"
-                className="customized-timeline"
-                //marker={customizedMarker}
-                content={(item, key) => {
-                    setKey(key);
-                    return customizedContent(item, key, setIsOpen);
-                }}
-            />
-            <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                <ul>
-                    {experiance[key - 1].resume.map((skill, index) => (
-                        <li key={index}> {skill}</li>
-                    ))}
-                </ul>
+        <div className="w-full flex flex-col items-center justify-center">
+            <Timeline items={experiance} onClick={setIsOpen}></Timeline>
+            <Dialog isOpen={isOpen !== -1} onClose={() => setIsOpen(-1)}>
+                <Show when={isOpen !== -1}>
+                    <Stepper data={(isOpen !== -1 && experiance[isOpen].resume) || []}>
+                        {(item, index) => <>{item}</>}
+                    </Stepper>
+                </Show>
             </Dialog>
-        </>
+        </div>
     );
 };

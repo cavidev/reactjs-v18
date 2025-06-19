@@ -10,7 +10,7 @@ export interface AuroraTextProps {
 const AuroraTextComponent: FC<AuroraTextProps> = ({
     children,
     className = "",
-    colors = ["#457F8C", "#5FA8AF", "#A2D7DB80", "#457F8C"],
+    colors = ["#F5FCFF", "#758CEC", "#313B84", "#262C62"],
     speed = 1,
 }) => {
     const gradientStyle = {

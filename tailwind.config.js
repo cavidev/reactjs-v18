@@ -6,7 +6,7 @@ export default {
     content: [
         fileURLToPath(new URL("./src/**/*.{html,js,jsx,ts,tsx,mdx}", import.meta.url)),
         fileURLToPath(new URL("./src/modules/**/*.{html,js,jsx,ts,tsx,mdx}", import.meta.url)),
-        fileURLToPath(new URL("./node_modules/primereact/**/*.{js,ts,jsx,tsx}", import.meta.url)),
+        //fileURLToPath(new URL("./node_modules/primereact/**/*.{js,ts,jsx,tsx}", import.meta.url)),
         fileURLToPath(new URL("./packages/home/**/*.{js,ts,jsx,tsx}", import.meta.url)),
         fileURLToPath(new URL("./packages/text/**/*.{js,ts,jsx,tsx}", import.meta.url)),
     ],
@@ -16,7 +16,7 @@ export default {
                 transparent: "transparent",
                 current: "currentColor",
                 inherit: "inherit",
-                background: {
+                /*background: {
                     light: "#F4F6FA",
                     dark: "#4A4F6D",
                 },
@@ -28,13 +28,40 @@ export default {
                     light: "#2B5D68",
                     dark: "#457F8C",
                 },
-                text: {
+                textColor: {
                     light: "#2E2E2E", // nuevo color más amigable
                     dark: "#FFFFFF",
                 },
                 subtext: {
                     light: "#768E95",
                     dark: "#C0C7D6",
+                },*/
+                // Alias funcionales para tema light/dark
+                background: {
+                    light: "#E4E8EE", // gray.50
+                    dark: "#1f2335", // manual (para dark mode)
+                },
+                surface: {
+                    light: "#FFFFFF", // tarjetas en light
+                    dark: "#2a2f4a", // tarjetas en dark
+                },
+                textColor: {
+                    light: "#1f2937", // gris oscuro (gray.800 aprox)
+                    dark: "#f9fafb", // texto claro
+                    mutedLight: "#6B7385", // gray.500
+                    mutedDark: "#9ca3af", // gris claro en dark
+                },
+                primary: {
+                    light: "#5C66D2", // blue.500
+                    dark: "#758CEC", // blue.400 o similar
+                },
+                accent: {
+                    light: "#BC3263", // cerise.500
+                    dark: "#EC798B", // cerise.300 aprox
+                },
+                success: {
+                    light: "#91E396", // emerald.300
+                    dark: "#065f46", // verde oscuro
                 },
             },
             animation: {
