@@ -20,8 +20,8 @@ const Stepper = <T,>({ data, children }: StepperProps<T>) => {
     const prevStep = () => goToStep(currentStep - 1);
 
     return (
-        <div className="w-full justify-center">
-            <div className="min-h-52">
+        <div className="w-full h-full flex flex-col justify-between">
+            <div className="min-h-40">
                 {typeof children === "function" ? children(data[currentStep], currentStep) : children}
             </div>
             <div className="w-full justify-center" style={{ display: "flex", alignItems: "center", marginTop: 16 }}>

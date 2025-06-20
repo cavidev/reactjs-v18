@@ -4,12 +4,14 @@ import { useClickOutside } from "~/hooks/useClickOutside";
 import Show from "~/lib/Show/Show";
 import { PFC } from "~/lib/utils";
 
+/*
+<button onClick={onClose}>x</button>
+*/
 export const DialogContent = forwardRef<HTMLDivElement, any>(({ onClose, children }, ref) => (
     <div
         ref={ref}
         className="w-1/2 h-1/2 overflow-auto rounded bg-surface-light dark:bg-surface-dark flex flex-col p-6"
     >
-        <button onClick={onClose}>x</button>
         {children}
     </div>
 ));

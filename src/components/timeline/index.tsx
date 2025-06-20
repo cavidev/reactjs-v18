@@ -1,12 +1,15 @@
 import React from "react";
 import For from "~/lib/For/For";
 import IconButton from "../button/IconButton";
+import { Chip } from "../chip";
 
 type TimelineItem = {
     id?: string | undefined;
     company: string;
     description?: string;
     date?: string;
+    tecnologies: string[];
+    resume?: string[];
 };
 
 type TimelineProps = {
@@ -19,7 +22,30 @@ const Timeline: React.FC<TimelineProps> = ({ items, onClick }) => (
         <For each={items}>
             {(item, idx) => (
                 <div key={idx} style={{ marginBottom: 30, position: "relative" }}>
-                    <strong>{item.company}</strong>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex flex-row">
+                            <strong>{item.company}</strong>
+                            <div>
+                                {item.date && (
+                                    <span style={{ marginLeft: 10, color: "#888", fontSize: 12 }}>{item.date}</span>
+                                )}
+                            </div>
+                        </div>
+                        <div className="flex flex-wrap gap-1 w-72">
+                            {/* @ts-ignore */}
+                            <For each={item.tecnologies}>
+                                {(item, index) => (
+                                    <Chip
+                                        key={index}
+                                        className="bg-surface1-light dark:bg-surface1-dark text-text-light dark:text-text-dark w-fit"
+                                        size="small"
+                                        // @ts-ignore
+                                        label={item}
+                                    ></Chip>
+                                )}
+                            </For>
+                        </div>
+                    </div>
                     <div
                         style={{
                             position: "absolute",
@@ -33,12 +59,11 @@ const Timeline: React.FC<TimelineProps> = ({ items, onClick }) => (
                             boxShadow: "0 0 0 2px #1976d2",
                         }}
                     />
-                    <div>
-                        {item.date && <span style={{ marginLeft: 10, color: "#888", fontSize: 12 }}>{item.date}</span>}
-                    </div>
+
                     <div className="flex flex-col">
                         <IconButton
                             label="View Details"
+                            size="small"
                             onClick={() => {
                                 onClick(idx);
                             }}
@@ -64,7 +89,7 @@ const Timeline: React.FC<TimelineProps> = ({ items, onClick }) => (
             )}
         </For>
         <div key={"Future"} style={{ marginBottom: 30, position: "relative" }}>
-            <strong>Future</strong>
+            <strong>...</strong>
         </div>
     </div>
 );

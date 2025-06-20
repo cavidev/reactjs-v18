@@ -5,6 +5,7 @@ import For from "~/lib/For/For";
 import { Button } from "../button";
 import IconButton from "../button/IconButton";
 import { Drawer } from "../drawer";
+import Hour from "../hour";
 import { Toggle } from "../toggle";
 import { MenuItem } from "./interfaces";
 
@@ -82,6 +83,7 @@ export const Navbar: FC<NavbarProps> = ({ items, className }) => {
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <Hour />
                             <IconButton
                                 size={"small"}
                                 svg={

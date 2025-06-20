@@ -45,6 +45,11 @@ export default {
                     light: "#FFFFFF", // tarjetas en light
                     dark: "#2a2f4a", // tarjetas en dark
                 },
+                surface1: {
+                    light: "#ded9df", // tarjetas en light
+                    dark: "#5e71a2", // tarjetas en dark
+                },
+
                 textColor: {
                     light: "#1f2937", // gris oscuro (gray.800 aprox)
                     dark: "#f9fafb", // texto claro

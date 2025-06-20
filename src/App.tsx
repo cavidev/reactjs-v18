@@ -1,11 +1,11 @@
-import Weather from "modules/weather/Weather";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "~/modules/home";
+import { Home } from "~/pages/home";
+import Weather from "~/pages/weather/Weather";
 import { Layout } from "./Layout";
 
 import "./App.css";
-import { Experience } from "./modules/experiance";
-import { TodoApp } from "./modules/TodoApp";
+import { Experience } from "./pages/experiance";
+import { TodoApp } from "./pages/TodoApp";
 
 function App() {
     return (
