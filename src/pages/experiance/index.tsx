@@ -38,7 +38,13 @@ export const Experience = () => {
                 <div className="col-span-2 row-span-5">
                     <div className="flex flex-col gap-2 justify-center items-center h-full">
                         <div>Tecnology Stack</div>
-                        <div>Comming soon</div>
+                        <div className="flex flex-row justify-center items-center gap-2 ml-7">
+                            <img
+                                src="https://github-readme-stats.vercel.app/api/top-langs?username=cavidev&locale=en&hide_title=false&layout=compact&card_width=700&langs_count=10&theme=discord_old_blurple&hide_border=true"
+                                height="200"
+                                alt="languages graph"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="col-span-2 row-span-5 col-start-3">
