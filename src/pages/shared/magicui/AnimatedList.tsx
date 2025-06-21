@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import React, { ComponentPropsWithoutRef, useEffect, useMemo, useState } from "react";
 import { cn } from "~/lib/utils";
+import For from "../../../lib/For/For";
 
 export function AnimatedListItem({ children, classname }: { children: React.ReactNode; classname?: string }) {
     const animations = {
@@ -44,12 +45,24 @@ export const AnimatedList = React.memo(({ children, className, delay = 1000, ...
         return result;
     }, [index, childrenArray]);
 
+    // Crear array con IDs únicos para usar con For
+    const itemsWithIds = useMemo(() => {
+        return itemsToShow.map((item, idx) => ({
+            id: `animated-item-${idx}-${(item as React.ReactElement).key || idx}`,
+            item
+        }));
+    }, [itemsToShow]);
+
     return (
         <div className={cn(`flex flex-col items-center gap-4`, className)} {...props}>
             <AnimatePresence>
-                {itemsToShow.map((item) => (
-                    <AnimatedListItem key={(item as React.ReactElement).key}>{item}</AnimatedListItem>
-                ))}
+                <For each={itemsWithIds}>
+                    {({ item }) => (
+                        <AnimatedListItem key={(item as React.ReactElement).key}>
+                            {item}
+                        </AnimatedListItem>
+                    )}
+                </For>
             </AnimatePresence>
         </div>
     );

@@ -19,6 +19,7 @@ export const Item = ({ todo }: { todo: Todo }) => {
                             onClick={() => {
                                 setEditing(true);
                             }}
+                            aria-label="Edit task"
                         >
                             📝
                         </button>
@@ -26,14 +27,17 @@ export const Item = ({ todo }: { todo: Todo }) => {
                             onClick={() => {
                                 dispatch({ payload: "delete", id: todo.id });
                             }}
+                            aria-label="Delete task"
                         >
                             ❌
                         </button>
                         <input
                             type="checkbox"
+                            checked={todo.done}
                             onChange={(e) => {
                                 dispatch({ payload: "complete", id: todo.id, done: e.target.checked });
                             }}
+                            aria-label={todo.done ? "Mark task as pending" : "Mark task as completed"}
                         />
                     </div>
                 </>

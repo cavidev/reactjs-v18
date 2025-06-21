@@ -6,32 +6,33 @@ export interface Todo {
     done: boolean;
 }
 
-type types = "add" | "delete" | "update";
+type ActionTypes = "add" | "delete" | "update" | "complete" | "set";
+
 export interface Actions {
+    payload: ActionTypes;
     id?: string;
-    payload: types;
-    data?: string;
+    data?: string | Todo[];
     done?: boolean;
 }
 
-const reducer = (state: Todo[], action: any) => {
+const reducer = (state: Todo[], action: Actions): Todo[] => {
     if (action.payload === "set") {
-        return action.data;
+        return action.data as Todo[];
     }
 
-    if (action.payload === "add" && action.data !== "") {
+    if (action.payload === "add" && action.data !== "" && typeof action.data === "string") {
         return [{ id: crypto.randomUUID(), text: action.data, done: false }, ...state];
     }
     if (action.payload === "delete") {
         return state.filter((todo) => todo.id !== action.id);
     }
 
-    if (action.payload === "update") {
+    if (action.payload === "update" && typeof action.data === "string") {
         return state.map((todo) => {
             if (todo.id === action.id)
                 return {
                     ...todo,
-                    text: action.data,
+                    text: action.data as string,
                 };
             return todo;
         });
@@ -42,7 +43,7 @@ const reducer = (state: Todo[], action: any) => {
             if (todo.id === action.id)
                 return {
                     ...todo,
-                    done: action.done,
+                    done: action.done || false,
                 };
             return todo;
         });
