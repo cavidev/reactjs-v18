@@ -1,7 +1,9 @@
-import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
 import For from "~/lib/For/For";
 import IconButton from "../button/IconButton";
 import { Chip } from "../chip";
+import { useTimelineAnimation } from "./hooks/useTimelineAnimation";
 
 type TimelineItem = {
     id?: string | undefined;
@@ -15,83 +17,269 @@ type TimelineItem = {
 type TimelineProps = {
     items: TimelineItem[];
     onClick: (index: number) => void;
+    autoAnimate?: boolean;
+    animationDelay?: number;
+    enableIntersectionObserver?: boolean;
 };
 
-const Timeline: React.FC<TimelineProps> = ({ items, onClick }) => (
-    <div style={{ borderLeft: "2px solid #1976d2", paddingLeft: 23 }}>
-        <For each={items}>
-            {(item, idx) => (
-                <div key={idx} style={{ marginBottom: 30, position: "relative" }}>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex flex-row">
-                            <strong>{item.company}</strong>
-                            <div>
-                                {item.date && (
-                                    <span style={{ marginLeft: 10, color: "#888", fontSize: 12 }}>{item.date}</span>
-                                )}
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap gap-1 w-72">
-                            {/* @ts-ignore */}
-                            <For each={item.tecnologies}>
-                                {(item, index) => (
-                                    <Chip
-                                        key={index}
-                                        className="bg-surface1-light dark:bg-surface1-dark text-text-light dark:text-text-dark w-fit"
-                                        size="small"
-                                        // @ts-ignore
-                                        label={item}
-                                    ></Chip>
-                                )}
-                            </For>
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            position: "absolute",
-                            left: -32,
-                            top: 0,
-                            width: 16,
-                            height: 16,
-                            background: "#1976d2",
-                            borderRadius: "50%",
-                            border: "2px solid #fff",
-                            boxShadow: "0 0 0 2px #1976d2",
-                        }}
-                    />
+const TimelineItem: React.FC<{
+    item: TimelineItem;
+    index: number;
+    onClick: (index: number) => void;
+    isVisible: boolean;
+    animationDelay: number;
+}> = ({ item, index, onClick, isVisible, animationDelay }) => {
+    const [isHovered, setIsHovered] = useState(false);
 
-                    <div className="flex flex-col">
-                        <IconButton
-                            label="View Details"
-                            size="small"
-                            onClick={() => {
-                                onClick(idx);
-                            }}
-                            svg={
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M4.75 9.233C4.75 9.64721 5.08579 9.983 5.5 9.983C5.91421 9.983 6.25 9.64721 6.25 9.233H4.75ZM6.25 5.5C6.25 5.08579 5.91421 4.75 5.5 4.75C5.08579 4.75 4.75 5.08579 4.75 5.5H6.25ZM5.5 4.75C5.08579 4.75 4.75 5.08579 4.75 5.5C4.75 5.91421 5.08579 6.25 5.5 6.25V4.75ZM9.233 6.25C9.64721 6.25 9.983 5.91421 9.983 5.5C9.983 5.08579 9.64721 4.75 9.233 4.75V6.25ZM6.03033 4.96967C5.73744 4.67678 5.26256 4.67678 4.96967 4.96967C4.67678 5.26256 4.67678 5.73744 4.96967 6.03033L6.03033 4.96967ZM9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.96967 11.0303ZM15.767 18.75C15.3528 18.75 15.017 19.0858 15.017 19.5C15.017 19.9142 15.3528 20.25 15.767 20.25V18.75ZM19.5 20.25C19.9142 20.25 20.25 19.9142 20.25 19.5C20.25 19.0858 19.9142 18.75 19.5 18.75V20.25ZM18.75 19.5C18.75 19.9142 19.0858 20.25 19.5 20.25C19.9142 20.25 20.25 19.9142 20.25 19.5H18.75ZM20.25 15.767C20.25 15.3528 19.9142 15.017 19.5 15.017C19.0858 15.017 18.75 15.3528 18.75 15.767H20.25ZM18.9697 20.0303C19.2626 20.3232 19.7374 20.3232 20.0303 20.0303C20.3232 19.7374 20.3232 19.2626 20.0303 18.9697L18.9697 20.0303ZM15.0303 13.9697C14.7374 13.6768 14.2626 13.6768 13.9697 13.9697C13.6768 14.2626 13.6768 14.7374 13.9697 15.0303L15.0303 13.9697ZM6.25 15.767C6.25 15.3528 5.91421 15.017 5.5 15.017C5.08579 15.017 4.75 15.3528 4.75 15.767H6.25ZM4.75 19.5C4.75 19.9142 5.08579 20.25 5.5 20.25C5.91421 20.25 6.25 19.9142 6.25 19.5H4.75ZM5.5 18.75C5.08579 18.75 4.75 19.0858 4.75 19.5C4.75 19.9142 5.08579 20.25 5.5 20.25V18.75ZM9.233 20.25C9.64721 20.25 9.983 19.9142 9.983 19.5C9.983 19.0858 9.64721 18.75 9.233 18.75V20.25ZM4.96967 18.9697C4.67678 19.2626 4.67678 19.7374 4.96967 20.0303C5.26256 20.3232 5.73744 20.3232 6.03033 20.0303L4.96967 18.9697ZM11.0303 15.0303C11.3232 14.7374 11.3232 14.2626 11.0303 13.9697C10.7374 13.6768 10.2626 13.6768 9.96967 13.9697L11.0303 15.0303ZM15.767 4.75C15.3528 4.75 15.017 5.08579 15.017 5.5C15.017 5.91421 15.3528 6.25 15.767 6.25V4.75ZM19.5 6.25C19.9142 6.25 20.25 5.91421 20.25 5.5C20.25 5.08579 19.9142 4.75 19.5 4.75V6.25ZM20.25 5.5C20.25 5.08579 19.9142 4.75 19.5 4.75C19.0858 4.75 18.75 5.08579 18.75 5.5H20.25ZM18.75 9.233C18.75 9.64721 19.0858 9.983 19.5 9.983C19.9142 9.983 20.25 9.64721 20.25 9.233H18.75ZM20.0303 6.03033C20.3232 5.73744 20.3232 5.26256 20.0303 4.96967C19.7374 4.67678 19.2626 4.67678 18.9697 4.96967L20.0303 6.03033ZM13.9697 9.96967C13.6768 10.2626 13.6768 10.7374 13.9697 11.0303C14.2626 11.3232 14.7374 11.3232 15.0303 11.0303L13.9697 9.96967ZM6.25 9.233V5.5H4.75V9.233H6.25ZM5.5 6.25H9.233V4.75H5.5V6.25ZM4.96967 6.03033L9.96967 11.0303L11.0303 9.96967L6.03033 4.96967L4.96967 6.03033ZM15.767 20.25H19.5V18.75H15.767V20.25ZM20.25 19.5V15.767H18.75V19.5H20.25ZM20.0303 18.9697L15.0303 13.9697L13.9697 15.0303L18.9697 20.0303L20.0303 18.9697ZM4.75 15.767V19.5H6.25V15.767H4.75ZM5.5 20.25H9.233V18.75H5.5V20.25ZM6.03033 20.0303L11.0303 15.0303L9.96967 13.9697L4.96967 18.9697L6.03033 20.0303ZM15.767 6.25H19.5V4.75H15.767V6.25ZM18.75 5.5V9.233H20.25V5.5H18.75ZM18.9697 4.96967L13.9697 9.96967L15.0303 11.0303L20.0303 6.03033L18.9697 4.96967Z"
-                                        fill="currentColor"
-                                    />
-                                </svg>
-                            }
-                        ></IconButton>
-                    </div>
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            x: -30,
+            scale: 0.95,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            transition: {
+                duration: 0.5,
+                delay: animationDelay,
+                ease: [0.25, 0.46, 0.45, 0.94],
+            },
+        },
+        hover: {
+            scale: 1.01,
+            transition: {
+                duration: 0.2,
+            },
+        },
+    };
 
-                    {item.description && <div style={{ color: "#555", marginTop: 4 }}>{item.description}</div>}
+    const dotVariants = {
+        hidden: {
+            scale: 0,
+            opacity: 0,
+        },
+        visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+                duration: 0.3,
+                delay: animationDelay + 0.1,
+                ease: "backOut",
+            },
+        },
+        pulse: {
+            scale: [1, 1.1, 1],
+            transition: {
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+            },
+        },
+    };
+
+    const lineVariants = {
+        hidden: {
+            height: 0,
+        },
+        visible: {
+            height: "100%",
+            transition: {
+                duration: 0.6,
+                delay: animationDelay + 0.2,
+                ease: [0.25, 0.46, 0.45, 0.94],
+            },
+        },
+    };
+
+    return (
+        <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+            whileHover="hover"
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
+            className="relative mb-4 group"
+        >
+            {/* Timeline dot */}
+            <motion.div
+                variants={dotVariants}
+                animate={isHovered ? "pulse" : "visible"}
+                className="absolute left-[-20px] top-2 w-3 h-3 bg-blue-600 rounded-full border-2 border-white shadow-md"
+                style={{
+                    boxShadow: "0 0 0 1px #1976d2, 0 2px 4px rgba(0,0,0,0.1)",
+                }}
+                aria-hidden="true"
+            />
+
+            {/* Content */}
+            <motion.div
+                className="flex flex-col gap-2 p-3 bg-white dark:bg-gray-800 rounded-md shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200"
+                layout
+            >
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 transition-colors duration-200 line-clamp-1">
+                        {item.company}
+                    </h3>
+                    {item.date && (
+                        <time
+                            className="text-xs text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap"
+                            dateTime={item.date}
+                        >
+                            {item.date}
+                        </time>
+                    )}
                 </div>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-1">
+                    {item.tecnologies.slice(0, 4).map((tech, techIndex) => (
+                        <motion.div
+                            key={techIndex}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{
+                                delay: animationDelay + 0.4 + techIndex * 0.05,
+                                duration: 0.2,
+                            }}
+                        >
+                            <Chip
+                                className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors duration-200 text-xs"
+                                size="small"
+                                label={tech}
+                            />
+                        </motion.div>
+                    ))}
+                    {item.tecnologies.length > 4 && (
+                        <span className="text-xs text-gray-500 dark:text-gray-400 px-1">
+                            +{item.tecnologies.length - 4}
+                        </span>
+                    )}
+                </div>
+
+                {/* Description */}
+                {item.description && (
+                    <motion.p
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            delay: animationDelay + 0.6,
+                            duration: 0.3,
+                        }}
+                        className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed line-clamp-2"
+                    >
+                        {item.description}
+                    </motion.p>
+                )}
+
+                {/* Action Button */}
+                <motion.div
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        delay: animationDelay + 0.8,
+                        duration: 0.3,
+                    }}
+                    className="flex justify-end"
+                >
+                    <IconButton
+                        label={`View details for ${item.company}`}
+                        size="small"
+                        onClick={() => onClick(index)}
+                        className="bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-200 text-xs"
+                        svg={
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M7 17L17 7M17 7H7M17 7V17"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        }
+                    />
+                </motion.div>
+            </motion.div>
+        </motion.div>
+    );
+};
+
+const Timeline: React.FC<TimelineProps> = ({ 
+    items, 
+    onClick, 
+    autoAnimate = true, 
+    animationDelay = 0.2,
+    enableIntersectionObserver = true,
+}) => {
+    const {
+        visibleItems,
+        isInitialized,
+        isAnimating,
+        timelineRef,
+        resetAnimation,
+        triggerItem,
+    } = useTimelineAnimation({
+        itemsCount: items.length,
+        autoAnimate,
+        animationDelay,
+        enableIntersectionObserver,
+    });
+
+    return (
+        <div 
+            ref={timelineRef}
+            className="relative max-w-full"
+            role="region"
+            aria-label="Professional timeline"
+        >
+            {/* Animation status indicator */}
+            {isAnimating && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="absolute top-0 right-0 z-10 px-2 py-1 bg-blue-600 text-white text-xs rounded-full"
+                >
+                    Animating...
+                </motion.div>
             )}
-        </For>
-        <div key={"Future"} style={{ marginBottom: 30, position: "relative" }}>
-            <strong>...</strong>
+
+            {/* Main timeline line */}
+            <div 
+                className="absolute left-2.5 top-0 bottom-0 w-0.5 bg-blue-600"
+                aria-hidden="true"
+            />
+
+            <div className="pl-6">
+                <AnimatePresence>
+                    <For each={items}>
+                        {(item, index) => (
+                            <div key={item.id || index} data-index={index}>
+                                <TimelineItem
+                                    item={item}
+                                    index={index}
+                                    onClick={onClick}
+                                    isVisible={visibleItems.includes(index)}
+                                    animationDelay={index * animationDelay}
+                                />
+                            </div>
+                        )}
+                    </For>
+                </AnimatePresence>
+
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 export default Timeline;
