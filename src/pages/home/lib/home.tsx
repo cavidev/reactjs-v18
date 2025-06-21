@@ -3,6 +3,16 @@ import { FC, useState } from "react";
 import { Button } from "~/components/button";
 import { Linkedin } from "~/components/LinkenId";
 
+// Add this declaration if not already present in your project
+declare global {
+    interface ImportMeta {
+        env: {
+            [key: string]: string | undefined;
+            BASE_URL: string;
+        };
+    }
+}
+
 const Home: FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
@@ -17,9 +27,9 @@ const Home: FC = () => {
                         </AuroraText>
                     </h1>
                     <p className="text-theme-light-text dark:text-theme-dark-text">
-                        ..a seasoned software engineer with 5 years of experience in the industry. As a passionate
+                        ..a seasoned software engineer with 6+ years of experience in the industry. As a passionate
                         full-stack developer, I thrive crafting immersive and intuitive user experiences on the front
-                        end. My journey in software engineering has led me to specialize in web development,
+                        end. My journey in software engineering has led me to specialize in web development.
                     </p>
                     <div className="flex flex-row justify-center gap-1 h-full">
                         <a
@@ -28,7 +38,7 @@ const Home: FC = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             onLoad={(e) => {
-                                console.log(e);
+                                //console.log(e);
                             }}
                         >
                             <Button
@@ -53,11 +63,17 @@ const Home: FC = () => {
                             style={{ border: "10px" }}
                             className="border-solid bg-surface-light dark:bg-surface-dark p-1 w-80 h-80 rounded-full flex flex-col justify-center items-center"
                         >
-                            <img src="me1.png" alt="Carlos Villafuerte" className="rounded-full w-72 h-72 " />
+                            <img
+                                src={`${import.meta.env.BASE_URL}me1.png`}
+                                alt="Carlos Villafuerte"
+                                className="rounded-full sm:w-24 sm:h-24 md:w-72 md:h-72 "
+                            />
                         </div>
                     </div>
                 </div>
-                <MorphingText texts={["React", "JavaScript", "Typescript", "NodeJs", "Java", "AngularJs"]} />
+                <MorphingText
+                    texts={["ReactJs", "JavaScript", "Typescript", "NodeJs", "Java", "AngularJs", "Python"]}
+                />
             </div>
         </div>
     );

@@ -37,7 +37,6 @@ export const Experience = () => {
             <div className="grid grid-cols-4 grid-rows-5 gap-3">
                 <div className="col-span-2 row-span-5">
                     <div className="flex flex-col gap-2 justify-center items-center h-full">
-                        <div>Tecnology Stack</div>
                         <div className="flex flex-row justify-center items-center gap-2 ml-7">
                             <img
                                 src="https://github-readme-stats.vercel.app/api/top-langs?username=cavidev&locale=en&hide_title=false&layout=compact&card_width=700&langs_count=10&theme=discord_old_blurple&hide_border=true"
@@ -62,7 +61,7 @@ export const Experience = () => {
             <Dialog isOpen={isOpen !== -1} onClose={() => setIsOpen(-1)}>
                 <Show when={isOpen !== -1}>
                     <div className="flex flex-col gap-1 h-full">
-                        <h1 className="font-medium text-xl">Responsabilities: </h1>
+                        <h1 className="font-medium text-xl">Responsibilities: </h1>
                         <Stepper data={(isOpen !== -1 && experiance[isOpen].resume) || []}>
                             {(item, index) => (
                                 <CardBasic key={index}>
@@ -76,25 +75,3 @@ export const Experience = () => {
         </>
     );
 };
-
-/*
-
-
-        <div className="w-full flex flex-col items-center justify-center">
-            <Timeline items={experiance} onClick={setIsOpen}></Timeline>
-            <Dialog isOpen={isOpen !== -1} onClose={() => setIsOpen(-1)}>
-                <Show when={isOpen !== -1}>
-                    <div className="flex flex-col gap-1 h-full">
-                        <h1 className="font-medium text-xl">Responsabilities: </h1>
-                        <Stepper data={(isOpen !== -1 && experiance[isOpen].resume) || []}>
-                            {(item, index) => (
-                                <CardBasic key={index}>
-                                    <span>{item}</span>
-                                </CardBasic>
-                            )}
-                        </Stepper>
-                    </div>
-                </Show>
-            </Dialog>
-        </div>
-*/

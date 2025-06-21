@@ -8,8 +8,9 @@
     @tailwind components;
     @tailwind utilities;
 }
+
 :root {
-    font-family: "Barlow", "Victor Mono", Helvetica;
+    font-family: "Cal Sans", "Barlow", "Victor Mono", Helvetica;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
