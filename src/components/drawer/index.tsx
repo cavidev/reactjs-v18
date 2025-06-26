@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useClickOutside } from "~/hooks/useClickOutside";
 import Show from "~/lib/Show/Show";
@@ -9,45 +9,233 @@ interface DrawerProps {
     isOpen: boolean;
     title?: string;
     onClose: Function;
+    position?: "left" | "right";
+    size?: "sm" | "md" | "lg" | "full";
+    preventScroll?: boolean;
 }
 
-export const Drawer: PFC<DrawerProps> = ({ isOpen, onClose, title, children }) => {
-    const ref = useRef(null);
+/**
+ * Enhanced Drawer Component
+ * 
+ * Features:
+ * - Smooth spring animations with reduced motion support
+ * - Full accessibility (ARIA labels, keyboard navigation, focus management)
+ * - Mobile-optimized with responsive design
+ * - Configurable position (left/right) and size
+ * - Body scroll prevention
+ * - Escape key support
+ * - Custom scrollbar styling
+ * 
+ * Usage:
+ * ```tsx
+ * <Drawer 
+ *   isOpen={isOpen} 
+ *   onClose={() => setIsOpen(false)}
+ *   title="Settings"
+ *   position="right"
+ *   size="md"
+ * >
+ *   <div>Your content here</div>
+ * </Drawer>
+ * ```
+ */
+export const Drawer: PFC<DrawerProps> = ({ 
+    isOpen, 
+    onClose, 
+    title, 
+    children, 
+    position = "right",
+    size = "md",
+    preventScroll = true 
+}) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const [isReducedMotion, setIsReducedMotion] = useState(false);
+
+    // Check for reduced motion preference
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        setIsReducedMotion(mediaQuery.matches);
+
+        const handleChange = (e: MediaQueryListEvent) => {
+            setIsReducedMotion(e.matches);
+        };
+
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+    }, []);
+
+    // Prevent body scroll when drawer is open
+    useEffect(() => {
+        if (preventScroll && isOpen) {
+            document.body.style.overflow = "hidden";
+            return () => {
+                document.body.style.overflow = "unset";
+            };
+        }
+    }, [isOpen, preventScroll]);
+
+    // Handle escape key
+    const handleKeyDown = useCallback((event: KeyboardEvent) => {
+        if (event.key === "Escape" && isOpen) {
+            onClose();
+        }
+    }, [isOpen, onClose]);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener("keydown", handleKeyDown);
+            return () => document.removeEventListener("keydown", handleKeyDown);
+        }
+    }, [isOpen, handleKeyDown]);
 
     useClickOutside(ref, () => {
         onClose();
     });
 
+    // Focus management
+    useEffect(() => {
+        if (isOpen && ref.current) {
+            const focusableElements = ref.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0] as HTMLElement;
+            if (firstElement) {
+                firstElement.focus();
+            }
+        }
+    }, [isOpen]);
+
+    // Size classes
+    const sizeClasses = {
+        sm: "max-w-sm",
+        md: "max-w-md",
+        lg: "max-w-lg",
+        full: "max-w-full"
+    };
+
+    // Position classes
+    const positionClasses = {
+        left: {
+            container: "left-0",
+            initial: { x: "-100%" },
+            animate: { x: 0 },
+            exit: { x: "-100%" }
+        },
+        right: {
+            container: "right-0",
+            initial: { x: "100%" },
+            animate: { x: 0 },
+            exit: { x: "100%" }
+        }
+    };
+
+    const currentPosition = positionClasses[position];
+
+    // Optimized animations
+    const overlayVariants = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { 
+                duration: isReducedMotion ? 0 : 0.2,
+                ease: "easeOut"
+            }
+        },
+        exit: { 
+            opacity: 0,
+            transition: { 
+                duration: isReducedMotion ? 0 : 0.15,
+                ease: "easeIn"
+            }
+        }
+    };
+
+    const drawerVariants = {
+        hidden: currentPosition.initial,
+        visible: {
+            ...currentPosition.animate,
+            transition: {
+                type: "spring",
+                damping: 25,
+                stiffness: 300,
+                duration: isReducedMotion ? 0 : 0.3
+            }
+        },
+        exit: {
+            ...currentPosition.exit,
+            transition: {
+                type: "spring",
+                damping: 25,
+                stiffness: 300,
+                duration: isReducedMotion ? 0 : 0.25
+            }
+        }
+    };
+
     return createPortal(
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
             {isOpen && (
                 <>
                     {/* Overlay */}
                     <motion.div
-                        className="fixed inset-0 z-50 backdrop-blur-sm bg-white/20"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.1, ease: "easeInOut" }}
+                        className="fixed inset-0 z-50 backdrop-blur-sm bg-black/20 dark:bg-black/40"
+                        variants={overlayVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
                         onClick={() => onClose()}
+                        aria-hidden="true"
                     />
+                    
                     {/* Drawer */}
                     <motion.div
                         ref={ref}
-                        className="bg-surface-light dark:bg-surface-dark fixed right-0 top-0 z-50 h-full w-full max-w-md shadow-2xl flex flex-col transition-colors text-textColor-light dark:text-textColor-dark "
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "100%" }}
-                        transition={{ type: "tween", duration: 0.3 }}
+                        className={`bg-surface-light dark:bg-surface-dark fixed ${currentPosition.container} top-0 z-50 h-full w-full ${sizeClasses[size]} shadow-2xl flex flex-col transition-colors text-textColor-light dark:text-textColor-dark drawer-mobile`}
+                        variants={drawerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby={title ? "drawer-title" : undefined}
+                        aria-describedby="drawer-content"
                     >
+                        {/* Header */}
                         <Show when={title} keyed key={1}>
-                            <div className="px-4 py-6 sm:px-6">
-                                <h2 className="text-base font-semibold" id="drawer-title">
+                            <div className="flex items-center justify-between px-4 py-4 sm:px-6 border-b border-gray-200 dark:border-gray-700">
+                                <h2 className="text-lg font-semibold" id="drawer-title">
                                     {title}
                                 </h2>
+                                <button
+                                    onClick={() => onClose()}
+                                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                                    aria-label="Close drawer"
+                                >
+                                    <svg
+                                        className="w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                </button>
                             </div>
                         </Show>
-                        <div className="relative flex-1 px-4 sm:px-6 overflow-y-auto">{children}</div>
+                        
+                        {/* Content */}
+                        <div 
+                            className="relative flex-1 px-4 sm:px-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
+                            id="drawer-content"
+                        >
+                            {children}
+                        </div>
                     </motion.div>
                 </>
             )}
@@ -55,75 +243,4 @@ export const Drawer: PFC<DrawerProps> = ({ isOpen, onClose, title, children }) =
         document.getElementById("root")!
     );
 };
-/*import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { useClickOutside } from "~/hooks/useClickOutside";
-import { PFC } from "~/lib/utils";
 
-interface DrawerProps {
-    isOpen: boolean;
-    onClose: Function;
-}
-
-export const Drawer: PFC<DrawerProps> = ({ isOpen, onClose, children }) => {
-    const ref = useRef(null);
-    const [mounted, setMounted] = useState(isOpen);
-    const [show, setShow] = useState(isOpen);
-
-    useClickOutside(ref, () => {
-        onClose();
-    });
-
-    useEffect(() => {
-        if (isOpen) {
-            setMounted(true);
-            // Permite que el componente se monte antes de activar la animación
-            setTimeout(() => setShow(true), 10);
-        } else {
-            setShow(false);
-            // Espera la animación antes de desmontar
-            const timeout = setTimeout(() => setMounted(false), 300);
-            return () => clearTimeout(timeout);
-        }
-    }, [isOpen]);
-
-    if (!mounted) return null;
-
-    return createPortal(
-        <div className="transition-all">
-            <div className="relative z-10" aria-labelledby="drawer-title" role="dialog" aria-modal="true">
-                <div
-                    className={clsx(
-                        "fixed inset-0 bg-gray-500/75 transition-opacity duration-300",
-                        show ? "opacity-100" : "opacity-0"
-                    )}
-                    aria-hidden="true"
-                ></div>
-
-                <div className="fixed inset-0 overflow-hidden">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
-                            <div
-                                className={clsx(
-                                    "pointer-events-auto relative w-screen max-w-md transform transition-transform duration-300",
-                                    show ? "translate-x-0" : "translate-x-full"
-                                )}
-                            >
-                                <div ref={ref} className="flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl">
-                                    <div className="px-4 sm:px-6">
-                                        <h2 className="text-base font-semibold text-gray-900" id="drawer-title">
-                                            Panel title
-                                        </h2>
-                                    </div>
-                                    <div className="relative mt-6 flex-1 px-4 sm:px-6">{children}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>,
-        document.getElementById("root")!
-    );
-};*/
