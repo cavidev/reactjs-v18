@@ -207,6 +207,8 @@ export const Drawer: PFC<DrawerProps> = ({
                                     {title}
                                 </h2>
                                 <button
+                                    data-testId="close-drawer"
+                                    id="close-drawer"   
                                     onClick={() => onClose()}
                                     className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
                                     aria-label="Close drawer"

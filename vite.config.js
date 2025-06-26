@@ -14,11 +14,15 @@ export default defineConfig({
         https: false, // Usa HTTPS si es true
     },
     plugins: [react(), tsconfigPaths()],
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './src/setupTests.ts',
+      },
     base: isProd ? "/reactjs-v18/" : "/", // https://cavidev.github.io
     resolve: {
         alias: [
             { find: "~", replacement: path.resolve(__dirname, "src") },
-            { find: "modules", replacement: path.resolve(__dirname, "src/modules") },
             { find: "packages", replacement: path.resolve(__dirname, "packages") },
         ],
     },
@@ -26,3 +30,13 @@ export default defineConfig({
         //sourcemap: true,
     },
 });
+/*
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
+  },
+});
+*/
