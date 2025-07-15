@@ -32,7 +32,7 @@ export const Layout = () => {
                 command: () => navigate("/todo"),
             },
         ],
-        [navigate]
+        []
     );
 
     return (

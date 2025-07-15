@@ -1,3 +1,4 @@
+import Show from "~/lib/Show/Show";
 import { useTodoOperations } from "../hooks/useTodoOperations";
 import { useTodos } from "../TodoProvider";
 
@@ -19,13 +20,16 @@ export const TodoStats = () => {
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold">Statistics</h3>
                 <div className="flex gap-2">
-                    <button
-                        disabled
-                        onClick={loadTodosFromAPI}
-                        className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
-                    >
-                        Load from API
-                    </button>
+                    <Show when={false}>
+                        <button
+                            disabled
+                            onClick={loadTodosFromAPI}
+                            className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+                        >
+                            Load from API
+                        </button>
+                    </Show>
+
                 </div>
             </div>
             

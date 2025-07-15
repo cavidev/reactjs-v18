@@ -21,7 +21,7 @@ const Home: FC = () => {
                 <div className="flex text-text-light dark:text-text-dark flex-col gap-4 px-4 mx-auto lg:mx-0">
                     {/* Title */}
                     <h1 className="flex flex-col lg:flex-row text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold tracking-tighter items-center lg:items-start justify-center lg:justify-start text-center lg:text-left">
-                        <span className="lg:mr-2">I'm</span>
+                        <span className="lg:mr-2">I'm &nbsp;</span>
                         <AuroraText speed={2} className="text-center lg:text-left">
                             Carlos <br className="lg:hidden" />
                             <span className="lg:ml-4">&nbsp;Villafuerte</span>
