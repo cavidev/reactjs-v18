@@ -39,7 +39,7 @@ export const Layout = () => {
         <div
             id="layout"
             className={clsx(
-                "h-screen bg-background-light dark:bg-background-dark grid grid-cols-5 grid-rows-6 gap-2 transition-colors text-textColor-light dark:text-textColor-dark "
+                "min-h-screen bg-background-light dark:bg-background-dark grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 grid-rows-6 gap-2 transition-colors text-textColor-light dark:text-textColor-dark"
             )}
         >
             <div className="col-span-5">

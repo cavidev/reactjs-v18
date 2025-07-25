@@ -51,12 +51,22 @@ const Home: FC = () => {
                                 <span className="px-3 text-navbar-light dark:text-text-dark">Download CV</span>
                             </Button>
                         </a>
+                        {/* LinkedIn icon only on mobile, full button on desktop */}
                         <div className="w-full sm:w-auto flex justify-center lg:justify-start">
-                            <Linkedin
-                                onClick={() => {
-                                    location.href = "https://www.linkedin.com/in/carlosmariovillafuerte/";
-                                }}
-                            />
+                            <span className="block sm:hidden">
+                                <Linkedin
+                                    onClick={() => {
+                                        location.href = "https://www.linkedin.com/in/carlosmariovillafuerte/";
+                                    }}
+                                />
+                            </span>
+                            <span className="hidden sm:block">
+                                <Linkedin
+                                    onClick={() => {
+                                        location.href = "https://www.linkedin.com/in/carlosmariovillafuerte/";
+                                    }}
+                                />
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -81,7 +91,7 @@ const Home: FC = () => {
                 </div>
                 
                 {/* Technologies Text */}
-                <div className="mt-6 w-full max-w-xs">
+                <div className="mt-6 w-full max-w-xs hidden lg:block">
                     <MorphingText
                         className="h-8 sm:h-12 lg:h-16 text-lg sm:text-2xl lg:text-4xl"
                         texts={["ReactJs", "JavaScript", "Typescript", "NodeJs", "Java", "AngularJs", "Python"]}
