@@ -34,22 +34,25 @@ export const Experience = () => {
     const [isOpen, setIsOpen] = useState(-1);
     return (
         <>
-            <div className="grid grid-cols-4 grid-rows-5 gap-3">
-                <div className="col-span-2 row-span-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-5 gap-3">
+                {/* Imagen de lenguajes: solo visible en md+ */}
+                <div className="col-span-1 md:col-span-1 lg:col-span-2 row-span-5 hidden md:flex">
                     <div className="flex flex-col gap-2 justify-center items-center h-full">
-                        <div className="flex flex-row justify-center items-center gap-2 ml-7">
+                        <div className="flex flex-row justify-center items-center gap-2 ml-0 md:ml-7">
                             <img
                                 src="https://github-readme-stats.vercel.app/api/top-langs?username=cavidev&locale=en&hide_title=false&layout=compact&card_width=700&langs_count=10&theme=discord_old_blurple&hide_border=true"
                                 height="200"
                                 alt="languages graph"
+                                className="max-w-full h-auto"
                             />
                         </div>
                     </div>
                 </div>
-                <div className="col-span-2 row-span-5 col-start-3">
-                    <div className="w-full flex flex-col items-center justify-center">
+                {/* Timeline y título */}
+                <div className="col-span-1 md:col-span-1 lg:col-span-2 row-span-5 col-start-1 md:col-start-2 lg:col-start-3">
+                    <div className="w-full flex flex-col items-center justify-center px-2 md:px-4">
                         <div className="flex flex-col gap-4 justify-center items-center h-full">
-                            <h1 className="text-xl font-medium">Work History</h1>
+                            <h1 className="text-lg md:text-xl lg:text-2xl font-medium text-center">Work History</h1>
                             <div>
                                 <Timeline items={experiance} onClick={setIsOpen}></Timeline>
                             </div>

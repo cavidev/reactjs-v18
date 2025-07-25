@@ -8,8 +8,8 @@ const TodoAppContent = () => {
     const { error, clearError, isLoading } = useTodos();
 
     return (
-        <div className="grid grid-cols-4 grid-rows-4 gap-2 p-6">
-            <div className="col-span-2 row-span-4 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-4 gap-2 p-4 md:p-6">
+            <div className="col-span-1 md:col-span-1 lg:col-span-2 row-span-4 p-4 md:p-6">
                 {/* Show error if exists */}
                 {error && (
                     <div className="w-full mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded flex justify-between items-center">
@@ -35,7 +35,7 @@ const TodoAppContent = () => {
                     <Input />
                 </div>
             </div>
-            <div className="col-span-2 row-span-4 col-start-3 p-6">
+            <div className="col-span-1 md:col-span-1 lg:col-span-2 row-span-4 col-start-1 md:col-start-2 lg:col-start-3 p-4 md:p-6">
                 {/* Filters component */}
                 <TodoFilters />
                 {/* Todos list */}

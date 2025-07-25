@@ -138,19 +138,6 @@ export const Navbar: FC<NavbarProps> = ({ items, className }) => {
                                 );
                             }}
                         </For>
-                        <div className="flex items-center justify-between px-3 py-2">
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Theme</span>
-                            <Toggle
-                                onChange={() => {
-                                    setTheme((prev) => {
-                                        if (prev === "light") {
-                                            return "dark";
-                                        }
-                                        return "light";
-                                    });
-                                }}
-                            />
-                        </div>
                     </div>
                 </div>
             </nav>

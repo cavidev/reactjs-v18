@@ -200,6 +200,16 @@ export const Drawer: PFC<DrawerProps> = ({
                         aria-labelledby={title ? "drawer-title" : undefined}
                         aria-describedby="drawer-content"
                     >
+                        {/* Botón flotante de cerrar solo en mobile */}
+                        <button
+                            onClick={() => onClose()}
+                            className="sm:hidden fixed top-4 right-4 z-50 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Cerrar Drawer"
+                        >
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                         {/* Header */}
                         <Show when={title} keyed key={1}>
                             <div className="flex items-center justify-between px-4 py-4 sm:px-6 border-b border-gray-200 dark:border-gray-700">
@@ -233,7 +243,7 @@ export const Drawer: PFC<DrawerProps> = ({
                         
                         {/* Content */}
                         <div 
-                            className="relative flex-1 px-4 sm:px-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
+                            className="relative mt-6 flex-1 px-4 sm:px-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent"
                             id="drawer-content"
                         >
                             {children}
