@@ -58,4 +58,23 @@ export const experiance = [
             "Kubernetes",
         ],
     },
+    {
+        company: "Adivsion",
+        date: "Frontend Developer | Jun 2023 - Current",
+        icon: "pi pi-shopping-cart",
+        color: "#FF9800",
+        resume: [
+            "Developed and maintained web applications using modern frameworks",
+            "Actively participated in the full software development lifecycle, exposure to attend daily scrum calls and deliver works as per the stories planned, work with other scrum team members and product team",
+            "Experienced in agile projects, collaborated with cross-functional teams to deliver business-aligned solutions",
+        ],
+        tecnologies: [
+            "JavaScript",
+            "ReactJs",
+            "TypeScript",
+            "NodeJs",
+            "Firebase",
+            "webpack",
+        ],
+    },
 ];

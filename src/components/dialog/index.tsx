@@ -12,7 +12,7 @@ export const DialogContent = forwardRef<HTMLDivElement, any>(({ onClose, childre
         ref={ref}
         id="dialog-content"
         data-testid="dialog-content"
-        className="w-1/2 h-1/2 overflow-auto rounded bg-surface-light dark:bg-surface-dark flex flex-col p-6"
+        className="w-11/12 sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto max-h-[90vh] overflow-auto rounded bg-surface-light dark:bg-surface-dark flex flex-col p-3 sm:p-6"
     >
         {children}
     </div>
